@@ -11,6 +11,7 @@ import NotificationBannerSwift
 import Photos
 import Firebase
 import AssetsPickerViewController
+import Cloudinary
 
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     switch (lhs, rhs) {
@@ -45,6 +46,7 @@ class HomeCollectionViewController: UICollectionViewController {
     var groups:[Group] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        testCloudinary()
         onFirstLoad()
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         
@@ -67,15 +69,16 @@ class HomeCollectionViewController: UICollectionViewController {
         collectionView!.collectionViewLayout = layout
         getUser()
         handleGroups()
-        print("USERUSERUSER")
-        print(self.user)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(GroupCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
+//        self.collectionView!.register(GroupCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView?.reloadData()
         // Do any additional setup after loading the view.
+    }
+    
+    func testCloudinary() {
     }
     
     func handleGroups(){
@@ -106,11 +109,11 @@ class HomeCollectionViewController: UICollectionViewController {
             if snapshot.value != nil {
                 if var data = snapshot.value as? [String:Any] {
                     data["id"] = snapshot.key
-                    print("____________________")
-                    print("DATA",data)
                     let newGroup = Group()
                     newGroup.setValuesForKeys(data)
+                    newGroup.members = []
                     self.groups.append(newGroup)
+
 //                    self.groups.sort { $0.name! < $1.name! }
                     DispatchQueue.main.async {
                         self.collectionView?.reloadData()
@@ -234,7 +237,12 @@ class HomeCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! GroupCell
         print("CELL", cell)
-        cell.backgroundColor = UIColor.black
+//        cell.backgroundColor = UIColor.black
+        cell.group = groups[indexPath.row]
+//        print(groups[indexPath.row])
+        print("_________________")
+    
+//        print( groups[indexPath.row])
         // Configure the cell
     
         return cell
@@ -276,6 +284,9 @@ class HomeCollectionViewController: UICollectionViewController {
     }
     */
 
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showAlbum", sender: groups[indexPath.row])
+    }
 
     
 
@@ -294,6 +305,11 @@ class HomeCollectionViewController: UICollectionViewController {
             viewController.user = self.user
         } else if segue.identifier == "groups" {
 
+        } else if segue.identifier == "showAlbum" {
+            if let sendGroup = sender as? Group {
+                let vc:AlbumCollectionVC = segue.destination as! AlbumCollectionVC
+                vc.group = sendGroup
+            }
         }
         
     }
@@ -308,6 +324,7 @@ extension HomeCollectionViewController: AssetsPickerViewControllerDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "pickGroups") as! ChooseGroupTVC
         vc.assets = assets
+        vc.groups = self.groups
         self.navigationController?.pushViewController(vc, animated: true)
         // go to the albums table view to select which to send to
         // pass in the assets user has selected

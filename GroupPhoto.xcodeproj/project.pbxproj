@@ -8,22 +8,85 @@
 
 /* Begin PBXBuildFile section */
 		518267891FC7AF1800A4E1BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267881FC7AF1800A4E1BC /* AppDelegate.swift */; };
-		5182678B1FC7AF1800A4E1BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5182678A1FC7AF1800A4E1BC /* ViewController.swift */; };
 		5182678E1FC7AF1800A4E1BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5182678C1FC7AF1800A4E1BC /* Main.storyboard */; };
 		518267911FC7AF1800A4E1BC /* GroupPhoto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5182678F1FC7AF1800A4E1BC /* GroupPhoto.xcdatamodeld */; };
 		518267931FC7AF1800A4E1BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 518267921FC7AF1800A4E1BC /* Assets.xcassets */; };
 		518267961FC7AF1800A4E1BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 518267941FC7AF1800A4E1BC /* LaunchScreen.storyboard */; };
+		5182679E1FC7AF7100A4E1BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5182679D1FC7AF7100A4E1BC /* GoogleService-Info.plist */; };
+		518267A51FC7B20E00A4E1BC /* SearchUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267A41FC7B20E00A4E1BC /* SearchUserTVC.swift */; };
+		518267A71FC7B21700A4E1BC /* FriendTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267A61FC7B21700A4E1BC /* FriendTVC.swift */; };
+		518267AB1FC7B23200A4E1BC /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267AA1FC7B23200A4E1BC /* UserCell.swift */; };
+		518267AD1FC7B24500A4E1BC /* AddedMeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267AC1FC7B24500A4E1BC /* AddedMeTVC.swift */; };
+		518267B11FC7B25A00A4E1BC /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267B01FC7B25A00A4E1BC /* AppUser.swift */; };
+		518267B31FC7B26200A4E1BC /* Friendship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267B21FC7B26200A4E1BC /* Friendship.swift */; };
+		518267B51FC7B28100A4E1BC /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267B41FC7B28100A4E1BC /* PopUpViewController.swift */; };
+		518267B71FC7B2C200A4E1BC /* FindFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267B61FC7B2C200A4E1BC /* FindFriendsTableViewController.swift */; };
+		518267B91FC7B2CF00A4E1BC /* FriendListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267B81FC7B2CF00A4E1BC /* FriendListTableViewController.swift */; };
+		518267BB1FC7B2D900A4E1BC /* AddedMeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267BA1FC7B2D900A4E1BC /* AddedMeTableViewController.swift */; };
+		518267BD1FC7B2E600A4E1BC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267BC1FC7B2E600A4E1BC /* SettingsViewController.swift */; };
+		518267BF1FC7B2F500A4E1BC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267BE1FC7B2F500A4E1BC /* LoginViewController.swift */; };
+		518267C11FC7B30500A4E1BC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267C01FC7B30500A4E1BC /* SignUpViewController.swift */; };
+		518267C41FC7C9DD00A4E1BC /* HomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267C31FC7C9DD00A4E1BC /* HomeCollectionViewController.swift */; };
+		518267C71FC7CDE200A4E1BC /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267C61FC7CDE200A4E1BC /* Reachability.swift */; };
+		518267C91FC7CDEE00A4E1BC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267C81FC7CDEE00A4E1BC /* Extensions.swift */; };
+		518267CB1FC9186900A4E1BC /* NewChatUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267CA1FC9186900A4E1BC /* NewChatUserTVC.swift */; };
+		518267CE1FC918BB00A4E1BC /* CreateGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267CD1FC918BB00A4E1BC /* CreateGroupTableViewController.swift */; };
+		518267D01FC9193A00A4E1BC /* GroupConfirmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267CF1FC9193A00A4E1BC /* GroupConfirmTableViewController.swift */; };
+		518267D21FC9D31700A4E1BC /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267D11FC9D31700A4E1BC /* Group.swift */; };
+		518267D41FC9D31F00A4E1BC /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267D31FC9D31F00A4E1BC /* Photo.swift */; };
+		518267D61FC9D91A00A4E1BC /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267D51FC9D91A00A4E1BC /* GroupCell.swift */; };
+		518267DA1FCA52A400A4E1BC /* SelectImagesCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267D91FCA52A400A4E1BC /* SelectImagesCollectionVC.swift */; };
+		518267DC1FCA594400A4E1BC /* SelectImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267DB1FCA594400A4E1BC /* SelectImageCell.swift */; };
+		518267DE1FCC5A1B00A4E1BC /* ChooseGroupTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267DD1FCC5A1B00A4E1BC /* ChooseGroupTVC.swift */; };
+		518267E01FCC96E500A4E1BC /* ChooseGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267DF1FCC96E500A4E1BC /* ChooseGroupCell.swift */; };
+		518267E21FCF575300A4E1BC /* AlbumCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267E11FCF575300A4E1BC /* AlbumCollectionVC.swift */; };
+		518267E41FCF5FEA00A4E1BC /* AssetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267E31FCF5FEA00A4E1BC /* AssetCell.swift */; };
+		518267E61FCF60C400A4E1BC /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267E51FCF60C400A4E1BC /* Asset.swift */; };
+		7170160FD2668B109A09AFD9 /* Pods_GroupPhoto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507D6C7B32B01BC358E44A7B /* Pods_GroupPhoto.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		25784869D683EC2F931E4A04 /* Pods-GroupPhoto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupPhoto.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupPhoto/Pods-GroupPhoto.release.xcconfig"; sourceTree = "<group>"; };
+		507D6C7B32B01BC358E44A7B /* Pods_GroupPhoto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupPhoto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		518267851FC7AF1800A4E1BC /* GroupPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		518267881FC7AF1800A4E1BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5182678A1FC7AF1800A4E1BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5182678D1FC7AF1800A4E1BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		518267901FC7AF1800A4E1BC /* GroupPhoto.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GroupPhoto.xcdatamodel; sourceTree = "<group>"; };
 		518267921FC7AF1800A4E1BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		518267951FC7AF1800A4E1BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		518267971FC7AF1800A4E1BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5182679D1FC7AF7100A4E1BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		518267A41FC7B20E00A4E1BC /* SearchUserTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserTVC.swift; sourceTree = "<group>"; };
+		518267A61FC7B21700A4E1BC /* FriendTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTVC.swift; sourceTree = "<group>"; };
+		518267AA1FC7B23200A4E1BC /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		518267AC1FC7B24500A4E1BC /* AddedMeTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddedMeTVC.swift; sourceTree = "<group>"; };
+		518267B01FC7B25A00A4E1BC /* AppUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		518267B21FC7B26200A4E1BC /* Friendship.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friendship.swift; sourceTree = "<group>"; };
+		518267B41FC7B28100A4E1BC /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		518267B61FC7B2C200A4E1BC /* FindFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsTableViewController.swift; sourceTree = "<group>"; };
+		518267B81FC7B2CF00A4E1BC /* FriendListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListTableViewController.swift; sourceTree = "<group>"; };
+		518267BA1FC7B2D900A4E1BC /* AddedMeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddedMeTableViewController.swift; sourceTree = "<group>"; };
+		518267BC1FC7B2E600A4E1BC /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		518267BE1FC7B2F500A4E1BC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		518267C01FC7B30500A4E1BC /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		518267C21FC7C8F900A4E1BC /* GroupPhoto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GroupPhoto.entitlements; sourceTree = "<group>"; };
+		518267C31FC7C9DD00A4E1BC /* HomeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewController.swift; sourceTree = "<group>"; };
+		518267C61FC7CDE200A4E1BC /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		518267C81FC7CDEE00A4E1BC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		518267CA1FC9186900A4E1BC /* NewChatUserTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatUserTVC.swift; sourceTree = "<group>"; };
+		518267CD1FC918BB00A4E1BC /* CreateGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupTableViewController.swift; sourceTree = "<group>"; };
+		518267CF1FC9193A00A4E1BC /* GroupConfirmTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupConfirmTableViewController.swift; sourceTree = "<group>"; };
+		518267D11FC9D31700A4E1BC /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		518267D31FC9D31F00A4E1BC /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		518267D51FC9D91A00A4E1BC /* GroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
+		518267D91FCA52A400A4E1BC /* SelectImagesCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectImagesCollectionVC.swift; sourceTree = "<group>"; };
+		518267DB1FCA594400A4E1BC /* SelectImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectImageCell.swift; sourceTree = "<group>"; };
+		518267DD1FCC5A1B00A4E1BC /* ChooseGroupTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseGroupTVC.swift; sourceTree = "<group>"; };
+		518267DF1FCC96E500A4E1BC /* ChooseGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseGroupCell.swift; sourceTree = "<group>"; };
+		518267E11FCF575300A4E1BC /* AlbumCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCollectionVC.swift; sourceTree = "<group>"; };
+		518267E31FCF5FEA00A4E1BC /* AssetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetCell.swift; sourceTree = "<group>"; };
+		518267E51FCF60C400A4E1BC /* Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
+		7BAAAA52208FA6D0095300A6 /* Pods-GroupPhoto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupPhoto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupPhoto/Pods-GroupPhoto.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +94,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7170160FD2668B109A09AFD9 /* Pods_GroupPhoto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43F9A8637B30B6620CD6F013 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				507D6C7B32B01BC358E44A7B /* Pods_GroupPhoto.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5182677C1FC7AF1800A4E1BC = {
 			isa = PBXGroup;
 			children = (
 				518267871FC7AF1800A4E1BC /* GroupPhoto */,
 				518267861FC7AF1800A4E1BC /* Products */,
+				5C826503B81D1517B5110426 /* Pods */,
+				43F9A8637B30B6620CD6F013 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +130,110 @@
 		518267871FC7AF1800A4E1BC /* GroupPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				518267C51FC7CDCF00A4E1BC /* Helpers */,
+				518267C21FC7C8F900A4E1BC /* GroupPhoto.entitlements */,
+				518267A11FC7B1EF00A4E1BC /* Controllers */,
+				518267A01FC7B1EA00A4E1BC /* Models */,
+				5182679F1FC7B1E600A4E1BC /* Views */,
 				518267881FC7AF1800A4E1BC /* AppDelegate.swift */,
-				5182678A1FC7AF1800A4E1BC /* ViewController.swift */,
 				5182678C1FC7AF1800A4E1BC /* Main.storyboard */,
 				518267921FC7AF1800A4E1BC /* Assets.xcassets */,
 				518267941FC7AF1800A4E1BC /* LaunchScreen.storyboard */,
+				5182679D1FC7AF7100A4E1BC /* GoogleService-Info.plist */,
 				518267971FC7AF1800A4E1BC /* Info.plist */,
 				5182678F1FC7AF1800A4E1BC /* GroupPhoto.xcdatamodeld */,
 			);
 			path = GroupPhoto;
+			sourceTree = "<group>";
+		};
+		5182679F1FC7B1E600A4E1BC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				518267A41FC7B20E00A4E1BC /* SearchUserTVC.swift */,
+				518267A61FC7B21700A4E1BC /* FriendTVC.swift */,
+				518267AA1FC7B23200A4E1BC /* UserCell.swift */,
+				518267AC1FC7B24500A4E1BC /* AddedMeTVC.swift */,
+				518267CA1FC9186900A4E1BC /* NewChatUserTVC.swift */,
+				518267D51FC9D91A00A4E1BC /* GroupCell.swift */,
+				518267DB1FCA594400A4E1BC /* SelectImageCell.swift */,
+				518267DF1FCC96E500A4E1BC /* ChooseGroupCell.swift */,
+				518267E31FCF5FEA00A4E1BC /* AssetCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		518267A01FC7B1EA00A4E1BC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				518267B01FC7B25A00A4E1BC /* AppUser.swift */,
+				518267B21FC7B26200A4E1BC /* Friendship.swift */,
+				518267D11FC9D31700A4E1BC /* Group.swift */,
+				518267D31FC9D31F00A4E1BC /* Photo.swift */,
+				518267E51FCF60C400A4E1BC /* Asset.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		518267A11FC7B1EF00A4E1BC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				518267CC1FC918A100A4E1BC /* Photo */,
+				518267A31FC7B1FE00A4E1BC /* Login */,
+				518267A21FC7B1F700A4E1BC /* User */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		518267A21FC7B1F700A4E1BC /* User */ = {
+			isa = PBXGroup;
+			children = (
+				518267B41FC7B28100A4E1BC /* PopUpViewController.swift */,
+				518267B61FC7B2C200A4E1BC /* FindFriendsTableViewController.swift */,
+				518267B81FC7B2CF00A4E1BC /* FriendListTableViewController.swift */,
+				518267BA1FC7B2D900A4E1BC /* AddedMeTableViewController.swift */,
+				518267BC1FC7B2E600A4E1BC /* SettingsViewController.swift */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		518267A31FC7B1FE00A4E1BC /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				518267BE1FC7B2F500A4E1BC /* LoginViewController.swift */,
+				518267C01FC7B30500A4E1BC /* SignUpViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		518267C51FC7CDCF00A4E1BC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				518267C61FC7CDE200A4E1BC /* Reachability.swift */,
+				518267C81FC7CDEE00A4E1BC /* Extensions.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		518267CC1FC918A100A4E1BC /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				518267C31FC7C9DD00A4E1BC /* HomeCollectionViewController.swift */,
+				518267CD1FC918BB00A4E1BC /* CreateGroupTableViewController.swift */,
+				518267CF1FC9193A00A4E1BC /* GroupConfirmTableViewController.swift */,
+				518267D91FCA52A400A4E1BC /* SelectImagesCollectionVC.swift */,
+				518267DD1FCC5A1B00A4E1BC /* ChooseGroupTVC.swift */,
+				518267E11FCF575300A4E1BC /* AlbumCollectionVC.swift */,
+			);
+			name = Photo;
+			sourceTree = "<group>";
+		};
+		5C826503B81D1517B5110426 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7BAAAA52208FA6D0095300A6 /* Pods-GroupPhoto.debug.xcconfig */,
+				25784869D683EC2F931E4A04 /* Pods-GroupPhoto.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +243,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5182679A1FC7AF1800A4E1BC /* Build configuration list for PBXNativeTarget "GroupPhoto" */;
 			buildPhases = (
+				99EE6BA028ED8E6CE8FF486E /* [CP] Check Pods Manifest.lock */,
 				518267811FC7AF1800A4E1BC /* Sources */,
 				518267821FC7AF1800A4E1BC /* Frameworks */,
 				518267831FC7AF1800A4E1BC /* Resources */,
+				2639B33279820C4BD2A732F9 /* [CP] Embed Pods Frameworks */,
+				68AD094879328BCBA1CC6424 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -101,6 +273,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 92VN998L5W;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -129,20 +306,139 @@
 			files = (
 				518267961FC7AF1800A4E1BC /* LaunchScreen.storyboard in Resources */,
 				518267931FC7AF1800A4E1BC /* Assets.xcassets in Resources */,
+				5182679E1FC7AF7100A4E1BC /* GoogleService-Info.plist in Resources */,
 				5182678E1FC7AF1800A4E1BC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2639B33279820C4BD2A732F9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GroupPhoto/Pods-GroupPhoto-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AssetsPickerViewController/AssetsPickerViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/Cloudinary/Cloudinary.framework",
+				"${BUILT_PRODUCTS_DIR}/Dimmer/Dimmer.framework",
+				"${BUILT_PRODUCTS_DIR}/FadeView/FadeView.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/OptionalTypes/OptionalTypes.framework",
+				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftARGB/SwiftARGB.framework",
+				"${BUILT_PRODUCTS_DIR}/TinyLog/TinyLog.framework",
+				"${BUILT_PRODUCTS_DIR}/UIViewKVO/UIViewKVO.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AssetsPickerViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cloudinary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dimmer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FadeView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OptionalTypes.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftARGB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TinyLog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIViewKVO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GroupPhoto/Pods-GroupPhoto-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68AD094879328BCBA1CC6424 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GroupPhoto/Pods-GroupPhoto-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99EE6BA028ED8E6CE8FF486E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GroupPhoto-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		518267811FC7AF1800A4E1BC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5182678B1FC7AF1800A4E1BC /* ViewController.swift in Sources */,
+				518267CB1FC9186900A4E1BC /* NewChatUserTVC.swift in Sources */,
+				518267BF1FC7B2F500A4E1BC /* LoginViewController.swift in Sources */,
+				518267C91FC7CDEE00A4E1BC /* Extensions.swift in Sources */,
+				518267B71FC7B2C200A4E1BC /* FindFriendsTableViewController.swift in Sources */,
 				518267911FC7AF1800A4E1BC /* GroupPhoto.xcdatamodeld in Sources */,
+				518267B11FC7B25A00A4E1BC /* AppUser.swift in Sources */,
+				518267C71FC7CDE200A4E1BC /* Reachability.swift in Sources */,
+				518267DC1FCA594400A4E1BC /* SelectImageCell.swift in Sources */,
+				518267E61FCF60C400A4E1BC /* Asset.swift in Sources */,
+				518267D01FC9193A00A4E1BC /* GroupConfirmTableViewController.swift in Sources */,
+				518267DA1FCA52A400A4E1BC /* SelectImagesCollectionVC.swift in Sources */,
+				518267B91FC7B2CF00A4E1BC /* FriendListTableViewController.swift in Sources */,
+				518267C41FC7C9DD00A4E1BC /* HomeCollectionViewController.swift in Sources */,
+				518267E41FCF5FEA00A4E1BC /* AssetCell.swift in Sources */,
+				518267E21FCF575300A4E1BC /* AlbumCollectionVC.swift in Sources */,
+				518267A51FC7B20E00A4E1BC /* SearchUserTVC.swift in Sources */,
+				518267D21FC9D31700A4E1BC /* Group.swift in Sources */,
+				518267B31FC7B26200A4E1BC /* Friendship.swift in Sources */,
+				518267AB1FC7B23200A4E1BC /* UserCell.swift in Sources */,
 				518267891FC7AF1800A4E1BC /* AppDelegate.swift in Sources */,
+				518267D61FC9D91A00A4E1BC /* GroupCell.swift in Sources */,
+				518267C11FC7B30500A4E1BC /* SignUpViewController.swift in Sources */,
+				518267D41FC9D31F00A4E1BC /* Photo.swift in Sources */,
+				518267BB1FC7B2D900A4E1BC /* AddedMeTableViewController.swift in Sources */,
+				518267AD1FC7B24500A4E1BC /* AddedMeTVC.swift in Sources */,
+				518267BD1FC7B2E600A4E1BC /* SettingsViewController.swift in Sources */,
+				518267B51FC7B28100A4E1BC /* PopUpViewController.swift in Sources */,
+				518267DE1FCC5A1B00A4E1BC /* ChooseGroupTVC.swift in Sources */,
+				518267A71FC7B21700A4E1BC /* FriendTVC.swift in Sources */,
+				518267E01FCC96E500A4E1BC /* ChooseGroupCell.swift in Sources */,
+				518267CE1FC918BB00A4E1BC /* CreateGroupTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,10 +557,13 @@
 		};
 		5182679B1FC7AF1800A4E1BC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BAAAA52208FA6D0095300A6 /* Pods-GroupPhoto.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GroupPhoto/GroupPhoto.entitlements;
 				DEVELOPMENT_TEAM = 92VN998L5W;
 				INFOPLIST_FILE = GroupPhoto/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = andrewburns.GroupPhoto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -274,10 +573,13 @@
 		};
 		5182679C1FC7AF1800A4E1BC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25784869D683EC2F931E4A04 /* Pods-GroupPhoto.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GroupPhoto/GroupPhoto.entitlements;
 				DEVELOPMENT_TEAM = 92VN998L5W;
 				INFOPLIST_FILE = GroupPhoto/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = andrewburns.GroupPhoto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -304,6 +606,7 @@
 				5182679C1FC7AF1800A4E1BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

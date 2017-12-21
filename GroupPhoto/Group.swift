@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Firebase
 
 class Group: NSObject {
-    var id: String?
+    var id: String? 
     var name: String?
     var timestamp: NSNumber?
     var photos:[Photo]?
     var members:[AppUser]?
+    
+    
 }
 

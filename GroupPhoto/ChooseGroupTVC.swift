@@ -10,18 +10,19 @@ import UIKit
 import Photos
 import Firebase
 import AVKit
-
+import Cloudinary
 class ChooseGroupTVC: UITableViewController {
     
     var assets:[PHAsset]?
     var groups:[Group] = []
+    var selectedGroups:[Group] = []
     
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadUserGroups()
+//        loadUserGroups()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -30,37 +31,41 @@ class ChooseGroupTVC: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    func loadUserGroups() {
-        if let current = Auth.auth().currentUser?.uid {
-            let ref = Database.database().reference().child("user-groups").child(current)
-            ref.observe(.childAdded, with: { (snapshot) in
-                if snapshot.exists() {
-                    self.getGroupFromKey(key: snapshot.key)
-                }
-            })
-            
-            
-        }
-    }
+//    func loadUserGroups() {
+//        if let current = Auth.auth().currentUser?.uid {
+//            let ref = Database.database().reference().child("user-groups").child(current)
+//            ref.observe(.childAdded, with: { (snapshot) in
+//                if snapshot.exists() {
+//                    self.getGroupFromKey(key: snapshot.key)
+//                }
+//            })
+//            
+//            
+//        }
+//    }
     
-    func getGroupFromKey(key: String) {
-        let newref = Database.database().reference().child("groups").child(key)
-        newref.observeSingleEvent(of: .value, with: {(snapshot) in
-            if snapshot.exists() {
-                if var data = snapshot.value as? [String:Any] {
-                    data["id"] = snapshot.key
-                    let group = Group()
-                    group.setValuesForKeys(data)
-                    self.groups.append(group)
-                    DispatchQueue.main.async(execute: {
-                        self.tableView.reloadData()
-                    })
-
-                }
-            }
-        })
-        
-    }
+//    func getGroupFromKey(key: String) {
+//        let newref = Database.database().reference().child("groups").child(key)
+//        newref.observeSingleEvent(of: .value, with: {(snapshot) in
+//            if snapshot.exists() {
+//                if var data = snapshot.value as? [String:Any] {
+//                    data["id"] = snapshot.key
+//                    let memberRef = Database.database().reference().child("group-users").child(snapshot.key)
+//                    memberRef.observeSingleEvent(of: .value, with: { (snapshot) in
+//                        
+//                    })
+//                    let group = Group()
+//                    group.setValuesForKeys(data)
+//                    self.groups.append(group)
+//                    DispatchQueue.main.async(execute: {
+//                        self.tableView.reloadData()
+//                    })
+//
+//                }
+//            }
+//        })
+//        
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -81,32 +86,93 @@ class ChooseGroupTVC: UITableViewController {
     
     
     @IBAction func finished(_ sender: Any) {
+        let alert = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
         for asset in self.assets! {
+            print("ASSET BELOW", "_____________________")
+            print(asset)
             if (asset.mediaType == PHAssetMediaType.video) {
                 PHCachingImageManager().requestAVAsset(forVideo: asset, options: nil) { (asset, audioMix, args) in
                     let video = asset
-                    let urlThing = video as? AVURLAsset
-                     let storageRef = Storage.storage().reference().child("video.mp4")
-                    storageRef.putFile(from: (urlThing?.url)!)
-                    // ready to upload this url
+                    let urlThing = video as! AVURLAsset
+                    let url = urlThing.url
+                     let storageRef = Storage.storage().reference().child("videos").child(UUID().uuidString+".mp4")
+
+                    let tempDirectoryURL = NSURL.fileURL(withPath: NSTemporaryDirectory(), isDirectory: true)
+        
+                    // Create a destination URL.
+                    let targetURL = tempDirectoryURL.appendingPathComponent("test.mp4")
+                    
+                    // Copy the file.
+                    print(targetURL)
+                    do {
+                        try FileManager.default.copyItem(at: url, to: targetURL)
+                        print(targetURL)
+                        
+                    } catch let error {
+                        NSLog("Unable to copy file: \(error)")
+                    }
+                    let config = CLDConfiguration(cloudName: "groupphoto", apiKey: "529763434314274", apiSecret: "euZFOHie0ArsDODOl00IwZj9gmE")
+                    let params = CLDUploadRequestParams()
+                    params.setResourceType(.video)
+                    let cloudinary = CLDCloudinary(configuration: config)
+                    print(cloudinary)
+                    cloudinary.createUploader().signedUpload(url: targetURL, params: params, progress: { (progress) in
+                        // progress
+                    }, completionHandler: { (result, error) in
+//                        print(error)
+                        if error == nil {
+                        
+                        let imageData = UIImagePNGRepresentation(self.thumbnailImageForFileUrl(targetURL)!)!
+                        let config = CLDConfiguration(cloudName: "groupphoto", apiKey: "529763434314274", apiSecret: "euZFOHie0ArsDODOl00IwZj9gmE")
+                        let cloudinary = CLDCloudinary(configuration: config)
+                        print(cloudinary)
+                        cloudinary.createUploader().signedUpload(data: imageData, params: nil, progress: { (progress) in
+                            // progress
+                        }, completionHandler: { (result2, error2) in
+                            if error2 == nil {
+                                self.setUpVideoRecords(videoRef: (result?.secureUrl)! , thumbRef: (result2?.secureUrl)!)
+                            }
+                            
+                        })
+
+                            
+                            
+                        }
+                    })
+                    
+                    //
+
+                    
+                    
+                    // need to create asset record
                 }
 
             } else if (asset.mediaType == PHAssetMediaType.image) {
                 let image = getUIImage(asset: asset)
-                print(image)
-                let storageRef = Storage.storage().reference().child("image.png") // name this better probably in the group file
+                
+                let storageRef = Storage.storage().reference().child("images").child(UUID().uuidString+".png") // name this better probably in the group file
+                
                 if let uploadData = UIImagePNGRepresentation(image!) {
-                    storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
-                        
-                        if error != nil {
-                            print("Failed to upload image:", error!)
-                            return
+                    let config = CLDConfiguration(cloudName: "groupphoto", apiKey: "529763434314274", apiSecret: "euZFOHie0ArsDODOl00IwZj9gmE")
+                    let cloudinary = CLDCloudinary(configuration: config)
+                    print(cloudinary)
+                    cloudinary.createUploader().signedUpload(data: uploadData, params: nil, progress: { (progress) in
+                        // progress
+                    }, completionHandler: { (result, error) in
+                        if error == nil {
+                            self.setUpImageRecords(imageRef: (result?.secureUrl)!)
                         }
-                        
-                        // now we must do stuff with this ref and store it in other places
-                        
-                        
+    
                     })
+                    
                 }
             
             } else {
@@ -115,6 +181,59 @@ class ChooseGroupTVC: UITableViewController {
             }
             
         }
+        goBack()
+        dismiss(animated: false, completion: nil)
+    }
+    
+    func goBack() {
+        self.dismiss(animated: true, completion: {
+            //        let presenting = self.presentedViewController
+            //        let nav = presenting?.navigationController
+            self.navigationController?.popViewController(animated: true)
+        })
+    }
+    
+    func setUpVideoRecords(videoRef: String, thumbRef: String) {
+        let baseRef = Database.database().reference()
+        let timestamp:Int = Int(NSDate().timeIntervalSince1970)
+        baseRef.child("assets").childByAutoId().updateChildValues(["video_url" : videoRef, "thumbnail_url" : thumbRef, "timestamp" : timestamp], withCompletionBlock: {(err, ref) in
+            for group in self.selectedGroups {
+                baseRef.child("group-assets").child(group.id!).updateChildValues([ref.key : 0])
+                self.createUserAssetsForGroup(groupId: group.id!, assetRef: ref.key)
+                // now just need 'user-assets' to be able to track views
+                
+
+            }
+            
+        })
+
+    }
+    
+    func setUpImageRecords(imageRef: String) {
+        let baseRef = Database.database().reference()
+        let timestamp:Int = Int(NSDate().timeIntervalSince1970)
+        baseRef.child("assets").childByAutoId().updateChildValues(["image_url" : imageRef, "timestamp": timestamp], withCompletionBlock: {(err, ref) in
+            for group in self.selectedGroups {
+                baseRef.child("group-assets").child(group.id!).updateChildValues([ref.key : 0])
+                self.createUserAssetsForGroup(groupId: group.id!, assetRef: ref.key)
+                // now just need 'user-assets' to be able to track views
+            }
+            
+        })
+    }
+    
+    func createUserAssetsForGroup(groupId: String, assetRef: String) {
+        let ref = Database.database().reference().child("group-users").child(groupId)
+        ref.observeSingleEvent(of: .value, with: {(snapshot) in
+            if let users = snapshot.value as? [String:Any]{
+                for user in users {
+                    let finalRef = Database.database().reference().child("user-assets").child(user.key)
+                    finalRef.updateChildValues([assetRef: 0])
+                    
+                }
+            }
+            
+        })
     }
     
     
@@ -135,6 +254,21 @@ class ChooseGroupTVC: UITableViewController {
         return img
     }
 
+    fileprivate func thumbnailImageForFileUrl(_ fileUrl: URL) -> UIImage? {
+        let asset = AVAsset(url: fileUrl)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+        
+        do {
+            
+            let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(1, 60), actualTime: nil)
+            return UIImage(cgImage: thumbnailCGImage)
+            
+        } catch let err {
+            print(err)
+        }
+        
+        return nil
+    }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -144,7 +278,45 @@ class ChooseGroupTVC: UITableViewController {
 
         return cell
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // set checkbox to checked and highlight kind of
+        
+        if let list = tableView.indexPathsForSelectedRows {
+            selectedGroups.removeAll()
+            for item in list {
+                self.selectedGroups.append(self.groups[item.row])
+            }
+            if list.count > 2 {
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
+            if list.count > 0 {
+                doneButton.isEnabled = true
+            } else {
+                doneButton.isEnabled = false
+            }
+        }
+        //        print(indexPath)
+        //        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let list = tableView.indexPathsForSelectedRows {
+            selectedGroups.removeAll()
+            for item in list {
+                self.selectedGroups.append(self.groups[item.row])
+            }
+            
+            if list.count > 0 {
+                doneButton.isEnabled = true
+            } else {
+                doneButton.isEnabled = false
+            }
+            
+        }
+        //        print(indexPath)
+        //        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.

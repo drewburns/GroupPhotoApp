@@ -30,7 +30,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Odb-Yy-OD3">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="720"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wingman" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDG-Kv-SIh">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GroupPhoto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDG-Kv-SIh">
                                                 <rect key="frame" x="82" y="25" width="211" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="211" id="L9e-HB-oo7"/>
@@ -320,16 +320,24 @@
                                     <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCY-0E-EzI">
-                                            <rect key="frame" x="41" y="52" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCK-dC-Fee">
+                                            <rect key="frame" x="15" y="106" width="94" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rzi-Rx-2Gk">
+                                            <rect key="frame" x="13" y="0.0" width="98" height="98"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </view>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                <connections>
+                                    <outlet property="groupName" destination="GCK-dC-Fee" id="DnO-Mj-lyQ"/>
+                                    <outlet property="imageView" destination="Rzi-Rx-2Gk" id="8t2-Ny-NyZ"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -359,7 +367,7 @@
                     <connections>
                         <outlet property="meButton" destination="SNJ-dp-5Id" id="zqz-S3-qkY"/>
                         <segue destination="nbU-X4-F05" kind="presentation" identifier="me" id="ncl-s8-evN"/>
-                        <segue destination="0E2-h9-OaG" kind="show" id="pbt-na-j1g"/>
+                        <segue destination="0E2-h9-OaG" kind="show" identifier="showAlbum" id="pbt-na-j1g"/>
                         <segue destination="m4V-ew-nay" kind="show" identifier="groups" id="xFy-Dd-1Cx"/>
                     </connections>
                 </collectionViewController>
@@ -370,25 +378,39 @@
         <!--Group Display-->
         <scene sceneID="cVO-em-McD">
             <objects>
-                <collectionViewController id="0E2-h9-OaG" sceneMemberID="viewController">
+                <collectionViewController id="0E2-h9-OaG" customClass="AlbumCollectionVC" customModule="GroupPhoto" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="VPP-pS-XA9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="M3B-pI-0UV">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="75" height="75"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="EjA-Mw-PIy">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="EjA-Mw-PIy" customClass="AssetCell" customModule="GroupPhoto" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CWx-vF-yeW">
+                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                        </imageView>
+                                    </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="CWx-vF-yeW" firstAttribute="top" secondItem="EjA-Mw-PIy" secondAttribute="top" id="bqj-aW-9YZ"/>
+                                    <constraint firstItem="CWx-vF-yeW" firstAttribute="height" secondItem="EjA-Mw-PIy" secondAttribute="height" id="cpb-dt-Znh"/>
+                                    <constraint firstItem="CWx-vF-yeW" firstAttribute="leading" secondItem="EjA-Mw-PIy" secondAttribute="leading" id="dz4-Gb-ag4"/>
+                                    <constraint firstItem="CWx-vF-yeW" firstAttribute="width" secondItem="EjA-Mw-PIy" secondAttribute="width" id="qoJ-di-yzM"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="CWx-vF-yeW" id="7Sy-uF-ASe"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -402,7 +424,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6uT-zE-csr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3500" y="153"/>
+            <point key="canvasLocation" x="3500" y="152.47376311844079"/>
         </scene>
         <!--Friends-->
         <scene sceneID="xSQ-Gj-j25">
@@ -417,7 +439,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DNm-5f-o6c" id="Ebo-Zp-ZmY">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="61.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="YPO-oW-RVf">
@@ -719,7 +741,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cBe-rw-x4L" id="u5z-3w-1iu">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1k-R8-qjD">
@@ -799,7 +821,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WNp-Ey-FM9" id="lsf-5h-BAf">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="61.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="hlC-dj-nPn">
@@ -913,7 +935,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qH0-Fb-2sd" id="36R-v3-CcB">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="61.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="P0M-OU-Zbh">
@@ -995,7 +1017,7 @@
             </objects>
             <point key="canvasLocation" x="3041" y="-2100"/>
         </scene>
-        <!--Create Chat-->
+        <!--Create Group-->
         <scene sceneID="Nad-z7-Sg0">
             <objects>
                 <tableViewController id="86D-Ry-ya3" customClass="CreateGroupTableViewController" customModule="GroupPhoto" customModuleProvider="target" sceneMemberID="viewController">
@@ -1008,7 +1030,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N90-Uo-d7j" id="wKY-0z-wE4">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="Ts9-2Q-0JW">
@@ -1073,7 +1095,7 @@
                             <outlet property="delegate" destination="86D-Ry-ya3" id="3Hi-53-vny"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Create Chat" id="RT8-bM-Lkt">
+                    <navigationItem key="navigationItem" title="Create Group" id="RT8-bM-Lkt">
                         <barButtonItem key="backBarButtonItem" title="Back" id="dJw-4N-K2s"/>
                         <barButtonItem key="rightBarButtonItem" title="Create" id="cuT-5H-F5k">
                             <connections>

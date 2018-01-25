@@ -196,9 +196,11 @@ class ChooseGroupTVC: UITableViewController {
     func setUpVideoRecords(videoRef: String, thumbRef: String) {
         let baseRef = Database.database().reference()
         let timestamp:Int = Int(NSDate().timeIntervalSince1970)
+        print("TIMESTAMP FOR VIDEO",timestamp)
         baseRef.child("assets").childByAutoId().updateChildValues(["video_url" : videoRef, "thumbnail_url" : thumbRef, "timestamp" : timestamp], withCompletionBlock: {(err, ref) in
             for group in self.selectedGroups {
                 baseRef.child("group-assets").child(group.id!).updateChildValues([ref.key : 0])
+                print("CREATING GROUP ASSET FOR VIDEO")
                 self.createUserAssetsForGroup(groupId: group.id!, assetRef: ref.key)
                 // now just need 'user-assets' to be able to track views
                 
@@ -212,6 +214,7 @@ class ChooseGroupTVC: UITableViewController {
     func setUpImageRecords(imageRef: String) {
         let baseRef = Database.database().reference()
         let timestamp:Int = Int(NSDate().timeIntervalSince1970)
+        print("TIMESTAMP FOR IMAGE",timestamp)
         baseRef.child("assets").childByAutoId().updateChildValues(["image_url" : imageRef, "timestamp": timestamp], withCompletionBlock: {(err, ref) in
             for group in self.selectedGroups {
                 baseRef.child("group-assets").child(group.id!).updateChildValues([ref.key : 0])
@@ -227,6 +230,7 @@ class ChooseGroupTVC: UITableViewController {
         ref.observeSingleEvent(of: .value, with: {(snapshot) in
             if let users = snapshot.value as? [String:Any]{
                 for user in users {
+                    print("CREATING USER ASSET")
                     let finalRef = Database.database().reference().child("user-assets").child(user.key)
                     finalRef.updateChildValues([assetRef: 0])
                     
@@ -286,9 +290,6 @@ class ChooseGroupTVC: UITableViewController {
             selectedGroups.removeAll()
             for item in list {
                 self.selectedGroups.append(self.groups[item.row])
-            }
-            if list.count > 2 {
-                tableView.deselectRow(at: indexPath, animated: true)
             }
             if list.count > 0 {
                 doneButton.isEnabled = true

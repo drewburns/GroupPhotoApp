@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BBC31EC2552E9FE273863DE5B49A8E2D"
+               BlueprintIdentifier = "C326EE247B9B141777B13C904D351EB4"
                BuildableName = "Pods_GroupPhoto.framework"
                BlueprintName = "Pods-GroupPhoto"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -26,6 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -36,6 +37,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -45,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BBC31EC2552E9FE273863DE5B49A8E2D"
+            BlueprintIdentifier = "C326EE247B9B141777B13C904D351EB4"
             BuildableName = "Pods_GroupPhoto.framework"
             BlueprintName = "Pods-GroupPhoto"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -171,6 +171,7 @@ class CreateGroupTableViewController: UITableViewController {
         
         // Configure the cell...
         cell.user = self.users[indexPath.row]
+//        cell.userImage.loadImageUsingCacheSync((cell.user?.profileImageURL)!)
         cell.userImage.loadImageUsingCacheWithUrlString((cell.user?.profileImageURL)!)
         return cell
     }

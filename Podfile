@@ -9,8 +9,9 @@ target 'GroupPhoto' do
   pod 'NotificationBannerSwift'
   pod 'IQKeyboardManagerSwift'
   pod 'ReachabilitySwift', '~> 3'
-  pod 'Cloudinary', '~> 2.0'
+  pod 'Cloudinary', "~> 2.0.4"
   pod 'AssetsPickerViewController', :git => 'https://github.com/DragonCherry/AssetsPickerViewController', :branch => 'swift3'
+  pod "Player", "~> 0.7.0"
   # Pods for GroupPhoto
 
 end

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "7EC8FB817CE0C97F90818626CD820EED2AA5B037",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "7EC8FB817CE0C97F90818626CD820EED2AA5B037" : 9223372036854775807,
+    "3D2A0CCE152A2ADF23E066BEF3883BF15281C8C1" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "27BAE635-51C3-4BEB-A720-6A5F2AB10A1E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "7EC8FB817CE0C97F90818626CD820EED2AA5B037" : "GroupPhoto\/",
+    "3D2A0CCE152A2ADF23E066BEF3883BF15281C8C1" : "GroupPhoto\/GroupPhoto\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "GroupPhoto",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "GroupPhoto.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "bitbucket.org:drewburns\/groupphoto.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3D2A0CCE152A2ADF23E066BEF3883BF15281C8C1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/drewburns\/groupphoto.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7EC8FB817CE0C97F90818626CD820EED2AA5B037"
+    }
+  ]
+}

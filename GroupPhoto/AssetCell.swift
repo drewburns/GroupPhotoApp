@@ -14,14 +14,15 @@ class AssetCell: UICollectionViewCell {
     var addButton = false
     var asset:Asset? {
         didSet {
- 
             if asset?.thumbnail_url == nil {
                 // image
-                imageView.loadImageUsingCacheWithUrlString((asset?.image_url)!)
+                imageView.loadImageUsingCacheSync((asset?.image_url)!)
+                print("____________")
+                print("IMAGE URL", asset?.image_url)
                 
             } else {
                 if addButton == false {
-                    imageView.loadImageUsingCacheWithUrlString((asset?.thumbnail_url)!)
+                    imageView.loadImageUsingCacheSync((asset?.thumbnail_url)!)
 //                    imageView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
                     let image = UIImage(named: "playbutton")
                     let imageView2 = UIImageView(image: image!)

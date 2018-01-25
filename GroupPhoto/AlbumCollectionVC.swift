@@ -18,11 +18,20 @@ class AlbumCollectionVC: UICollectionViewController {
 
     var group:Group?
     var assets:[Asset] = []
+    var users:[AppUser] = []
+    var user:AppUser?
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = group?.name
         fetchGroupAssets()
+        self.assets.sort(by: { (message1, message2) -> Bool in
+            
+            return (message1.timestamp?.int32Value)! > (message2.timestamp?.int32Value)!
+        })
+        fetchGroupUsers()
+        print("USER", user)
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         
         //Get device width
@@ -86,15 +95,21 @@ class AlbumCollectionVC: UICollectionViewController {
                 asset.setValuesForKeys(data)
                 print("ASSET BEING MADE!", asset)
                 self.assets.append(asset)
-//                self.assets.sort { Float($0.timestamp!) < Float($1.timestamp!) }
-                DispatchQueue.main.async(execute: {
+                self.assets.sort(by: { (message1, message2) -> Bool in
                     
+                    return (message2.timestamp?.int32Value)! > (message1.timestamp?.int32Value)!
+                })
+                DispatchQueue.main.async(execute: {
                     self.collectionView?.reloadData()
                 })
             }
         })
+        DispatchQueue.main.async(execute: {
+            self.collectionView?.reloadData()
+        })
     }
 
+    
     /*
     // MARK: - Navigation
 
@@ -122,8 +137,12 @@ class AlbumCollectionVC: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! AssetCell
 //        print("CELL BEING MADE")
         cell.backgroundColor = UIColor.black
+//        cell.imageView.image = nil
         cell.asset = assets[indexPath.row]
-        let userImage = cell.imageView
+        print("Asset passed in", cell.asset?.image_url)
+        
+//        cell.imageView.image = nil
+//        let userImage = cell.imageView
 //        userImage.tag =
         
         // let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
@@ -166,7 +185,8 @@ class AlbumCollectionVC: UICollectionViewController {
             let imageView = UIImageView()
             if assets[i].thumbnail_url != nil {
                 imageView.loadImageUsingCacheWithUrlString(assets[i].thumbnail_url!)
-                imageView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
+                print("Before", imageView.frame)
+                // imageView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
                 // for now because video was sideways???
                 // load other video stuff
             } else {
@@ -176,14 +196,16 @@ class AlbumCollectionVC: UICollectionViewController {
             zoomingScrollView.isPagingEnabled = true
             zoomingScrollView.contentSize.width = zoomingScrollView.frame.width * CGFloat(i+1)
             imageView.frame = CGRect(x: xPosition, y: 0, width: zoomingScrollView.frame.width, height: zoomingScrollView.frame.height)
-            imageView.contentMode = .scaleAspectFill
+            imageView.contentMode = .scaleAspectFit
             imageView.isUserInteractionEnabled = true
             if assets[i].thumbnail_url != nil {
                 let newView = CustomImageView(image: #imageLiteral(resourceName: "playbutton"))
-                newView.transform = CGAffineTransform(rotationAngle: (3)*CGFloat(M_PI_2))
-                newView.frame = CGRect(x: 150, y:150, width: 150, height: 150)
+                // newView.transform = CGAffineTransform(rotationAngle: (3)*CGFloat(M_PI_2))
+                newView.frame = CGRect(x: (imageView.frame.width/3 ), y: (imageView.frame.height/3), width: 150, height: 150)
                 newView.isUserInteractionEnabled = true
                 newView.url = assets[i].video_url
+                newView.parentView = imageView
+                print("AFter", imageView.frame)
                 newView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlePlayVideo)))
                 imageView.addSubview(newView)
             }
@@ -195,7 +217,7 @@ class AlbumCollectionVC: UICollectionViewController {
 
         
         zoomingScrollView.isUserInteractionEnabled = true
-        zoomingScrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut)))
+        // zoomingScrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut)))
         
         let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleZoomOut))
         downSwipe.direction = UISwipeGestureRecognizerDirection.down
@@ -242,6 +264,12 @@ class AlbumCollectionVC: UICollectionViewController {
     
     func handleZoomOut(_ tapGesture: UISwipeGestureRecognizer) {
         if let zoomOutImageView = tapGesture.view {
+            if let avplayervc = tapGesture.view?.parentViewController as? AVPlayerViewController {
+                avplayervc.player?.pause()
+                avplayervc.player?.replaceCurrentItem(with: nil)
+                avplayervc.player = nil
+
+            }
             //need to animate back out to controller
             zoomOutImageView.layer.cornerRadius = 16
             zoomOutImageView.clipsToBounds = true
@@ -264,12 +292,56 @@ class AlbumCollectionVC: UICollectionViewController {
             let player = AVPlayer(url: URL(string: imageView.url)!)
             let playerController = AVPlayerViewController()
             playerController.player = player
-            self.present(playerController, animated: true) {
-                player.play()
-            }
+            // playerController.view.transform = CGAffineTransform(rotationAngle: (3)*CGFloat(M_PI_2))
+            let xPosition = CGFloat(0)
+            let yPosition = CGFloat(0)
+            let thewidth = (imageView.parentView?.frame.width)!
+            let theheight = (imageView.parentView?.frame.height)!
+            playerController.view.frame = CGRect(x: xPosition, y: yPosition, width: thewidth, height: theheight)
+            imageView.parentView?.addSubview(playerController.view)
+            
+            playerController.view.isUserInteractionEnabled = true
+            playerController.showsPlaybackControls = false
+        
+            let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleZoomOut))
+            downSwipe.direction = UISwipeGestureRecognizerDirection.down
+            playerController.view.addGestureRecognizer(downSwipe)
+            
+            let upSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleZoomOut))
+            upSwipe.direction = UISwipeGestureRecognizerDirection.up
+            playerController.view.addGestureRecognizer(upSwipe)
+            
+            let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleZoomOut))
+            leftSwipe.direction = UISwipeGestureRecognizerDirection.left
+            playerController.view.addGestureRecognizer(leftSwipe)
+            
+            let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleZoomOut))
+            rightSwipe.direction = UISwipeGestureRecognizerDirection.right
+            playerController.view.addGestureRecognizer(rightSwipe)
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(replay))
+            playerController.view.addGestureRecognizer(tap)
+            
+            print("FRAME", playerController.view.frame)
+            let session = AVAudioSession.sharedInstance()
+            try!  session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            player.play()
+
+            //self.present(playerController, animated: true) {
+            //    player.play()
+            //}
         }
 
     }
+    
+    func replay(_ tapGesture: UITapGestureRecognizer){
+        print("HERE")
+        print("View", tapGesture.view?.parentViewController)
+        if let videoView = tapGesture.view?.parentViewController as? AVPlayerViewController{
+            videoView.player?.seek(to: kCMTimeZero)
+        }
+    }
+
     
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -277,7 +349,54 @@ class AlbumCollectionVC: UICollectionViewController {
         performZoomInForStartingImageView(cell.imageView as! UIImageView, indexPath.row)
         // load scroll view 
     }
+    
+    func fetchGroupUsers() {
+        if let id = self.group?.id {
+            let ref = Database.database().reference().child("group-users").child(id)
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+//                print("VALUE",snapshot.value)
+                if let data = snapshot.value as? [String:Any] {
+                    for user in data {
+                        self.addUser(key: user.key)
+                    }
+                }
+            })
+        }
+    }
+    
+//    @IBAction func viewUsers(_ sender: Any) {
+//        let vc = FriendListTableViewController() //your view controller
+//        vc.users = self.users
+//        vc.user = self.user
+//        self.present(vc, animated: true, completion: nil)
+//    }
+    
+    func addUser(key: String) {
+        let ref = Database.database().reference().child("users").child(key)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if var data = snapshot.value as? [String:Any] {
+                data["id"] = snapshot.key
+                let newUser = AppUser()
+                newUser.setValuesForKeys(data)
+                self.users.append(newUser)
+            }
+        }, withCancel: nil)
+    }
+    
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "groupusers" {
+            let viewController:GroupUsersTVC = segue.destination as! GroupUsersTVC
+            viewController.user = self.user
+            viewController.users = self.users
+            
+        } else if segue.identifier == "addusers" {
+            let viewController:AddGroupUsersTVC = segue.destination as! AddGroupUsersTVC
+            viewController.user = self.user
+            viewController.users = self.users
+            viewController.group = self.group
+        }
+    }
     // MARK: UICollectionViewDelegate
 
     /*
@@ -316,5 +435,6 @@ class AlbumCollectionVC: UICollectionViewController {
 }
 class CustomImageView: UIImageView {
     var url:String!
+    var parentView: UIImageView?
     
 }

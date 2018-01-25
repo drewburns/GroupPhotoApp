@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		51256FD91FF5A8DB0008D9CC /* GroupUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51256FD81FF5A8DB0008D9CC /* GroupUserTableViewCell.swift */; };
+		51256FDB1FF5A8E50008D9CC /* AddGroupMemberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51256FDA1FF5A8E50008D9CC /* AddGroupMemberTableViewCell.swift */; };
+		513B470E1FF57CCC0097F37B /* GroupUsersTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B470D1FF57CCC0097F37B /* GroupUsersTVC.swift */; };
+		513B47101FF57CE60097F37B /* AddGroupUsersTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513B470F1FF57CE60097F37B /* AddGroupUsersTVC.swift */; };
 		518267891FC7AF1800A4E1BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267881FC7AF1800A4E1BC /* AppDelegate.swift */; };
 		5182678E1FC7AF1800A4E1BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5182678C1FC7AF1800A4E1BC /* Main.storyboard */; };
 		518267911FC7AF1800A4E1BC /* GroupPhoto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5182678F1FC7AF1800A4E1BC /* GroupPhoto.xcdatamodeld */; };
@@ -42,12 +46,45 @@
 		518267E21FCF575300A4E1BC /* AlbumCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267E11FCF575300A4E1BC /* AlbumCollectionVC.swift */; };
 		518267E41FCF5FEA00A4E1BC /* AssetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267E31FCF5FEA00A4E1BC /* AssetCell.swift */; };
 		518267E61FCF60C400A4E1BC /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518267E51FCF60C400A4E1BC /* Asset.swift */; };
+		51835EAB1FF459D1005F0AA1 /* ShareSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51835EAA1FF459D1005F0AA1 /* ShareSelectViewController.swift */; };
+		51835EEF1FF54801005F0AA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5182679D1FC7AF7100A4E1BC /* GoogleService-Info.plist */; };
+		51CF7D4F1FF1B4C200BA5198 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CF7D4E1FF1B4C200BA5198 /* ShareViewController.swift */; };
+		51CF7D521FF1B4C200BA5198 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51CF7D501FF1B4C200BA5198 /* MainInterface.storyboard */; };
+		51CF7D561FF1B4C200BA5198 /* GroupPhotoShare.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 51CF7D4C1FF1B4C200BA5198 /* GroupPhotoShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7170160FD2668B109A09AFD9 /* Pods_GroupPhoto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507D6C7B32B01BC358E44A7B /* Pods_GroupPhoto.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		51CF7D541FF1B4C200BA5198 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5182677D1FC7AF1800A4E1BC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 51CF7D4B1FF1B4C200BA5198;
+			remoteInfo = GroupPhotoShare;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		51CF7D5A1FF1B4C200BA5198 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				51CF7D561FF1B4C200BA5198 /* GroupPhotoShare.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		25784869D683EC2F931E4A04 /* Pods-GroupPhoto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupPhoto.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupPhoto/Pods-GroupPhoto.release.xcconfig"; sourceTree = "<group>"; };
 		507D6C7B32B01BC358E44A7B /* Pods_GroupPhoto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupPhoto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		51256FD81FF5A8DB0008D9CC /* GroupUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUserTableViewCell.swift; sourceTree = "<group>"; };
+		51256FDA1FF5A8E50008D9CC /* AddGroupMemberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupMemberTableViewCell.swift; sourceTree = "<group>"; };
+		513B470D1FF57CCC0097F37B /* GroupUsersTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUsersTVC.swift; sourceTree = "<group>"; };
+		513B470F1FF57CE60097F37B /* AddGroupUsersTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGroupUsersTVC.swift; sourceTree = SOURCE_ROOT; };
 		518267851FC7AF1800A4E1BC /* GroupPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		518267881FC7AF1800A4E1BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5182678D1FC7AF1800A4E1BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -86,6 +123,44 @@
 		518267E11FCF575300A4E1BC /* AlbumCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCollectionVC.swift; sourceTree = "<group>"; };
 		518267E31FCF5FEA00A4E1BC /* AssetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetCell.swift; sourceTree = "<group>"; };
 		518267E51FCF60C400A4E1BC /* Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
+		51835EAA1FF459D1005F0AA1 /* ShareSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSelectViewController.swift; sourceTree = "<group>"; };
+		51835EAF1FF545A6005F0AA1 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
+		51835EB01FF545A6005F0AA1 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		51835EB11FF545A6005F0AA1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		51835EB21FF545B5005F0AA1 /* FirebaseAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAuth.framework; path = Pods/FirebaseAuth/Frameworks/FirebaseAuth.framework; sourceTree = "<group>"; };
+		51835EB51FF545D4005F0AA1 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Pods/FirebaseCore/Frameworks/FirebaseCore.framework; sourceTree = "<group>"; };
+		51835EB61FF545D4005F0AA1 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = Pods/FirebaseCore/Frameworks/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
+		51835EB71FF545D4005F0AA1 /* FirebaseNanoPB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseNanoPB.framework; path = Pods/FirebaseCore/Frameworks/FirebaseNanoPB.framework; sourceTree = "<group>"; };
+		51835EBB1FF545E3005F0AA1 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseDatabase.framework; path = Pods/FirebaseDatabase/Frameworks/FirebaseDatabase.framework; sourceTree = "<group>"; };
+		51835EBD1FF545EF005F0AA1 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Pods/FirebaseInstanceID/Frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		51835EBF1FF545FB005F0AA1 /* FirebaseStorage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseStorage.framework; path = Pods/FirebaseStorage/Frameworks/FirebaseStorage.framework; sourceTree = "<group>"; };
+		51835EC11FF5460B005F0AA1 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		51835EC31FF54627005F0AA1 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		51835EC41FF54627005F0AA1 /* Cloudinary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cloudinary.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/Cloudinary/Cloudinary.framework"; sourceTree = "<group>"; };
+		51835EC91FF546D4005F0AA1 /* AssetsPickerViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsPickerViewController.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/AssetsPickerViewController/AssetsPickerViewController.framework"; sourceTree = "<group>"; };
+		51835ECA1FF546D4005F0AA1 /* Dimmer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Dimmer.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/Dimmer/Dimmer.framework"; sourceTree = "<group>"; };
+		51835ECB1FF546D4005F0AA1 /* FadeView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FadeView.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/FadeView/FadeView.framework"; sourceTree = "<group>"; };
+		51835ECC1FF546D4005F0AA1 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleToolboxForMac.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/GoogleToolboxForMac/GoogleToolboxForMac.framework"; sourceTree = "<group>"; };
+		51835ECD1FF546D4005F0AA1 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GTMSessionFetcher.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/GTMSessionFetcher/GTMSessionFetcher.framework"; sourceTree = "<group>"; };
+		51835ECE1FF546D4005F0AA1 /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IQKeyboardManagerSwift.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"; sourceTree = "<group>"; };
+		51835ECF1FF546D4005F0AA1 /* leveldb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = leveldb.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/leveldb-library/leveldb.framework"; sourceTree = "<group>"; };
+		51835ED01FF546D4005F0AA1 /* MarqueeLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MarqueeLabel.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/MarqueeLabel/MarqueeLabel.framework"; sourceTree = "<group>"; };
+		51835ED11FF546D4005F0AA1 /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = nanopb.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/nanopb/nanopb.framework"; sourceTree = "<group>"; };
+		51835ED21FF546D4005F0AA1 /* NotificationBannerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationBannerSwift.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/NotificationBannerSwift/NotificationBannerSwift.framework"; sourceTree = "<group>"; };
+		51835ED31FF546D4005F0AA1 /* OptionalTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OptionalTypes.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/OptionalTypes/OptionalTypes.framework"; sourceTree = "<group>"; };
+		51835ED41FF546D4005F0AA1 /* Player.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Player.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/Player/Player.framework"; sourceTree = "<group>"; };
+		51835ED51FF546D4005F0AA1 /* Pods_GroupPhoto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_GroupPhoto.framework; path = "Pods/../build/Debug-iphoneos/Pods_GroupPhoto.framework"; sourceTree = "<group>"; };
+		51835ED61FF546D4005F0AA1 /* PureLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PureLayout.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/PureLayout/PureLayout.framework"; sourceTree = "<group>"; };
+		51835ED71FF546D4005F0AA1 /* ReachabilitySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReachabilitySwift.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/ReachabilitySwift/ReachabilitySwift.framework"; sourceTree = "<group>"; };
+		51835ED81FF546D4005F0AA1 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/SnapKit/SnapKit.framework"; sourceTree = "<group>"; };
+		51835ED91FF546D4005F0AA1 /* SwiftARGB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftARGB.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/SwiftARGB/SwiftARGB.framework"; sourceTree = "<group>"; };
+		51835EDA1FF546D4005F0AA1 /* TinyLog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyLog.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/TinyLog/TinyLog.framework"; sourceTree = "<group>"; };
+		51835EDB1FF546D4005F0AA1 /* UIViewKVO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIViewKVO.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/UIViewKVO/UIViewKVO.framework"; sourceTree = "<group>"; };
+		51835EF41FF556DB005F0AA1 /* Pods_GroupPhoto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_GroupPhoto.framework; path = "../../../../Library/Developer/Xcode/DerivedData/GroupPhoto-dlbavfnlymyitoaraeyiptydslat/Build/Products/Debug-iphonesimulator/Pods_GroupPhoto.framework"; sourceTree = "<group>"; };
+		51CF7D4C1FF1B4C200BA5198 /* GroupPhotoShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GroupPhotoShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		51CF7D4E1FF1B4C200BA5198 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		51CF7D511FF1B4C200BA5198 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		51CF7D531FF1B4C200BA5198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BAAAA52208FA6D0095300A6 /* Pods-GroupPhoto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupPhoto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupPhoto/Pods-GroupPhoto.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,12 +173,50 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		51CF7D491FF1B4C200BA5198 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		43F9A8637B30B6620CD6F013 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				51835EF41FF556DB005F0AA1 /* Pods_GroupPhoto.framework */,
+				51835EC91FF546D4005F0AA1 /* AssetsPickerViewController.framework */,
+				51835ECA1FF546D4005F0AA1 /* Dimmer.framework */,
+				51835ECB1FF546D4005F0AA1 /* FadeView.framework */,
+				51835ECC1FF546D4005F0AA1 /* GoogleToolboxForMac.framework */,
+				51835ECD1FF546D4005F0AA1 /* GTMSessionFetcher.framework */,
+				51835ECE1FF546D4005F0AA1 /* IQKeyboardManagerSwift.framework */,
+				51835ECF1FF546D4005F0AA1 /* leveldb.framework */,
+				51835ED01FF546D4005F0AA1 /* MarqueeLabel.framework */,
+				51835ED11FF546D4005F0AA1 /* nanopb.framework */,
+				51835ED21FF546D4005F0AA1 /* NotificationBannerSwift.framework */,
+				51835ED31FF546D4005F0AA1 /* OptionalTypes.framework */,
+				51835ED41FF546D4005F0AA1 /* Player.framework */,
+				51835ED51FF546D4005F0AA1 /* Pods_GroupPhoto.framework */,
+				51835ED61FF546D4005F0AA1 /* PureLayout.framework */,
+				51835ED71FF546D4005F0AA1 /* ReachabilitySwift.framework */,
+				51835ED81FF546D4005F0AA1 /* SnapKit.framework */,
+				51835ED91FF546D4005F0AA1 /* SwiftARGB.framework */,
+				51835EDA1FF546D4005F0AA1 /* TinyLog.framework */,
+				51835EDB1FF546D4005F0AA1 /* UIViewKVO.framework */,
+				51835EC31FF54627005F0AA1 /* Alamofire.framework */,
+				51835EC41FF54627005F0AA1 /* Cloudinary.framework */,
+				51835EC11FF5460B005F0AA1 /* FirebaseAnalytics.framework */,
+				51835EBF1FF545FB005F0AA1 /* FirebaseStorage.framework */,
+				51835EBD1FF545EF005F0AA1 /* FirebaseInstanceID.framework */,
+				51835EBB1FF545E3005F0AA1 /* FirebaseDatabase.framework */,
+				51835EB51FF545D4005F0AA1 /* FirebaseCore.framework */,
+				51835EB61FF545D4005F0AA1 /* FirebaseCoreDiagnostics.framework */,
+				51835EB71FF545D4005F0AA1 /* FirebaseNanoPB.framework */,
+				51835EB21FF545B5005F0AA1 /* FirebaseAuth.framework */,
+				51835EAC1FF545A6005F0AA1 /* Firebase */,
 				507D6C7B32B01BC358E44A7B /* Pods_GroupPhoto.framework */,
 			);
 			name = Frameworks;
@@ -113,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				518267871FC7AF1800A4E1BC /* GroupPhoto */,
+				51CF7D4D1FF1B4C200BA5198 /* GroupPhotoShare */,
 				518267861FC7AF1800A4E1BC /* Products */,
 				5C826503B81D1517B5110426 /* Pods */,
 				43F9A8637B30B6620CD6F013 /* Frameworks */,
@@ -123,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				518267851FC7AF1800A4E1BC /* GroupPhoto.app */,
+				51CF7D4C1FF1B4C200BA5198 /* GroupPhotoShare.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,6 +273,8 @@
 				518267DB1FCA594400A4E1BC /* SelectImageCell.swift */,
 				518267DF1FCC96E500A4E1BC /* ChooseGroupCell.swift */,
 				518267E31FCF5FEA00A4E1BC /* AssetCell.swift */,
+				51256FD81FF5A8DB0008D9CC /* GroupUserTableViewCell.swift */,
+				51256FDA1FF5A8E50008D9CC /* AddGroupMemberTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -217,14 +334,54 @@
 		518267CC1FC918A100A4E1BC /* Photo */ = {
 			isa = PBXGroup;
 			children = (
+				513B470F1FF57CE60097F37B /* AddGroupUsersTVC.swift */,
 				518267C31FC7C9DD00A4E1BC /* HomeCollectionViewController.swift */,
 				518267CD1FC918BB00A4E1BC /* CreateGroupTableViewController.swift */,
 				518267CF1FC9193A00A4E1BC /* GroupConfirmTableViewController.swift */,
 				518267D91FCA52A400A4E1BC /* SelectImagesCollectionVC.swift */,
 				518267DD1FCC5A1B00A4E1BC /* ChooseGroupTVC.swift */,
 				518267E11FCF575300A4E1BC /* AlbumCollectionVC.swift */,
+				513B470D1FF57CCC0097F37B /* GroupUsersTVC.swift */,
 			);
 			name = Photo;
+			sourceTree = "<group>";
+		};
+		51835EAC1FF545A6005F0AA1 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				51835EAD1FF545A6005F0AA1 /* Core */,
+				51835EB11FF545A6005F0AA1 /* README.md */,
+			);
+			name = Firebase;
+			path = Pods/Firebase;
+			sourceTree = "<group>";
+		};
+		51835EAD1FF545A6005F0AA1 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				51835EAE1FF545A6005F0AA1 /* Sources */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		51835EAE1FF545A6005F0AA1 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				51835EAF1FF545A6005F0AA1 /* Firebase.h */,
+				51835EB01FF545A6005F0AA1 /* module.modulemap */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		51CF7D4D1FF1B4C200BA5198 /* GroupPhotoShare */ = {
+			isa = PBXGroup;
+			children = (
+				51CF7D4E1FF1B4C200BA5198 /* ShareViewController.swift */,
+				51CF7D501FF1B4C200BA5198 /* MainInterface.storyboard */,
+				51CF7D531FF1B4C200BA5198 /* Info.plist */,
+				51835EAA1FF459D1005F0AA1 /* ShareSelectViewController.swift */,
+			);
+			path = GroupPhotoShare;
 			sourceTree = "<group>";
 		};
 		5C826503B81D1517B5110426 /* Pods */ = {
@@ -249,15 +406,34 @@
 				518267831FC7AF1800A4E1BC /* Resources */,
 				2639B33279820C4BD2A732F9 /* [CP] Embed Pods Frameworks */,
 				68AD094879328BCBA1CC6424 /* [CP] Copy Pods Resources */,
+				51CF7D5A1FF1B4C200BA5198 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				51CF7D551FF1B4C200BA5198 /* PBXTargetDependency */,
 			);
 			name = GroupPhoto;
 			productName = GroupPhoto;
 			productReference = 518267851FC7AF1800A4E1BC /* GroupPhoto.app */;
 			productType = "com.apple.product-type.application";
+		};
+		51CF7D4B1FF1B4C200BA5198 /* GroupPhotoShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 51CF7D591FF1B4C200BA5198 /* Build configuration list for PBXNativeTarget "GroupPhotoShare" */;
+			buildPhases = (
+				51CF7D481FF1B4C200BA5198 /* Sources */,
+				51CF7D491FF1B4C200BA5198 /* Frameworks */,
+				51CF7D4A1FF1B4C200BA5198 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GroupPhotoShare;
+			productName = GroupPhotoShare;
+			productReference = 51CF7D4C1FF1B4C200BA5198 /* GroupPhotoShare.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -279,6 +455,11 @@
 							};
 						};
 					};
+					51CF7D4B1FF1B4C200BA5198 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 92VN998L5W;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 518267801FC7AF1800A4E1BC /* Build configuration list for PBXProject "GroupPhoto" */;
@@ -295,6 +476,7 @@
 			projectRoot = "";
 			targets = (
 				518267841FC7AF1800A4E1BC /* GroupPhoto */,
+				51CF7D4B1FF1B4C200BA5198 /* GroupPhotoShare */,
 			);
 		};
 /* End PBXProject section */
@@ -308,6 +490,15 @@
 				518267931FC7AF1800A4E1BC /* Assets.xcassets in Resources */,
 				5182679E1FC7AF7100A4E1BC /* GoogleService-Info.plist in Resources */,
 				5182678E1FC7AF1800A4E1BC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51CF7D4A1FF1B4C200BA5198 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51CF7D521FF1B4C200BA5198 /* MainInterface.storyboard in Resources */,
+				51835EEF1FF54801005F0AA1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +523,7 @@
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/OptionalTypes/OptionalTypes.framework",
+				"${BUILT_PRODUCTS_DIR}/Player/Player.framework",
 				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -354,6 +546,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OptionalTypes.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Player.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -427,13 +620,17 @@
 				518267D21FC9D31700A4E1BC /* Group.swift in Sources */,
 				518267B31FC7B26200A4E1BC /* Friendship.swift in Sources */,
 				518267AB1FC7B23200A4E1BC /* UserCell.swift in Sources */,
+				51256FDB1FF5A8E50008D9CC /* AddGroupMemberTableViewCell.swift in Sources */,
 				518267891FC7AF1800A4E1BC /* AppDelegate.swift in Sources */,
 				518267D61FC9D91A00A4E1BC /* GroupCell.swift in Sources */,
 				518267C11FC7B30500A4E1BC /* SignUpViewController.swift in Sources */,
+				51256FD91FF5A8DB0008D9CC /* GroupUserTableViewCell.swift in Sources */,
+				513B47101FF57CE60097F37B /* AddGroupUsersTVC.swift in Sources */,
 				518267D41FC9D31F00A4E1BC /* Photo.swift in Sources */,
 				518267BB1FC7B2D900A4E1BC /* AddedMeTableViewController.swift in Sources */,
 				518267AD1FC7B24500A4E1BC /* AddedMeTVC.swift in Sources */,
 				518267BD1FC7B2E600A4E1BC /* SettingsViewController.swift in Sources */,
+				513B470E1FF57CCC0097F37B /* GroupUsersTVC.swift in Sources */,
 				518267B51FC7B28100A4E1BC /* PopUpViewController.swift in Sources */,
 				518267DE1FCC5A1B00A4E1BC /* ChooseGroupTVC.swift in Sources */,
 				518267A71FC7B21700A4E1BC /* FriendTVC.swift in Sources */,
@@ -442,7 +639,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		51CF7D481FF1B4C200BA5198 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51835EAB1FF459D1005F0AA1 /* ShareSelectViewController.swift in Sources */,
+				51CF7D4F1FF1B4C200BA5198 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		51CF7D551FF1B4C200BA5198 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 51CF7D4B1FF1B4C200BA5198 /* GroupPhotoShare */;
+			targetProxy = 51CF7D541FF1B4C200BA5198 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5182678C1FC7AF1800A4E1BC /* Main.storyboard */ = {
@@ -459,6 +673,14 @@
 				518267951FC7AF1800A4E1BC /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		51CF7D501FF1B4C200BA5198 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				51CF7D511FF1B4C200BA5198 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -559,6 +781,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7BAAAA52208FA6D0095300A6 /* Pods-GroupPhoto.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GroupPhoto/GroupPhoto.entitlements;
 				DEVELOPMENT_TEAM = 92VN998L5W;
@@ -575,6 +798,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 25784869D683EC2F931E4A04 /* Pods-GroupPhoto.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GroupPhoto/GroupPhoto.entitlements;
 				DEVELOPMENT_TEAM = 92VN998L5W;
@@ -583,6 +807,54 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = andrewburns.GroupPhoto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		51CF7D571FF1B4C200BA5198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 92VN998L5W;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/FirebaseAuth/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseCore/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseDatabase/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseInstanceID/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseStorage/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				INFOPLIST_FILE = GroupPhotoShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = andrewburns.GroupPhoto.GroupPhotoShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		51CF7D581FF1B4C200BA5198 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 92VN998L5W;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/FirebaseAuth/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseCore/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseDatabase/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseInstanceID/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseStorage/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				INFOPLIST_FILE = GroupPhotoShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = andrewburns.GroupPhoto.GroupPhotoShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -604,6 +876,15 @@
 			buildConfigurations = (
 				5182679B1FC7AF1800A4E1BC /* Debug */,
 				5182679C1FC7AF1800A4E1BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		51CF7D591FF1B4C200BA5198 /* Build configuration list for PBXNativeTarget "GroupPhotoShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51CF7D571FF1B4C200BA5198 /* Debug */,
+				51CF7D581FF1B4C200BA5198 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

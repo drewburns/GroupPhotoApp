@@ -102,7 +102,6 @@ class HomeCollectionViewController: UICollectionViewController {
             }
         })
 
-    
     }
     
     func fetchGroup(groupId: String) {
@@ -137,9 +136,9 @@ class HomeCollectionViewController: UICollectionViewController {
         for group in self.groups {
             let ref = Database.database().reference().child("group-assets").child(group.id!)
             ref.queryLimited(toLast: 1).observeSingleEvent(of: .value, with: { (snapshot) in
-                let newkey = snapshot.value as? [String:Any]
-                
-                let newref = Database.database().reference().child("assets").child(newkey!.first!.key)
+                if let newkey = snapshot.value as? [String:Any] {
+                    print("IT WORKED", newkey)
+                    let newref = Database.database().reference().child("assets").child(newkey.first!.key)
                     newref.observeSingleEvent(of: .value, with: { (snapshot2) in
                         if let data = snapshot2.value as? [String:Any] {
                             self.picturesDictionary[group] =  data["timestamp"] as? Int
@@ -147,20 +146,27 @@ class HomeCollectionViewController: UICollectionViewController {
                             
                             self.picturesDictionary[group] =  group.timestamp as? Int
                         }
-                        print("DICT COUNT", self.picturesDictionary.keys.count)
-                        var array:[Group] = []
-                        for (k,v) in (Array(self.picturesDictionary).sorted {$0.1 > $1.1}) {
-                            array.append(k as! Group)
-                        }
-                        print("_________________________")
-  
-                        if array.count == self.groups.count {
-                            print("HERHERHEHREH")
-                                self.groups = array
-                                self.collectionView?.reloadData()
-                        }
+                        
                         
                     })
+                } else {
+                    print("IT DIDNT" )
+                    self.picturesDictionary[group] =  group.timestamp as? Int
+                }
+                
+    
+                print("DICT COUNT", self.picturesDictionary.keys.count)
+                var array:[Group] = []
+                for (k,v) in (Array(self.picturesDictionary).sorted {$0.1 > $1.1}) {
+                    array.append(k as! Group)
+                }
+                print("_________________________")
+                
+                if array.count == self.groups.count {
+                    print("HERHERHEHREH")
+                    self.groups = array
+                    self.collectionView?.reloadData()
+                }
             })
  
         }

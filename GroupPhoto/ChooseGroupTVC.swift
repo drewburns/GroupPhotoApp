@@ -21,6 +21,7 @@ class ChooseGroupTVC: UITableViewController {
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     override func viewDidLoad() {
+        print("CURRENT USER", Auth.auth().currentUser?.uid)
         super.viewDidLoad()
 //        loadUserGroups()
 
@@ -168,6 +169,7 @@ class ChooseGroupTVC: UITableViewController {
                         // progress
                     }, completionHandler: { (result, error) in
                         if error == nil {
+                            print("IMAGE UPLOADED LETS GO")
                             self.setUpImageRecords(imageRef: (result?.secureUrl)!)
                         }
     
@@ -196,7 +198,7 @@ class ChooseGroupTVC: UITableViewController {
     func setUpVideoRecords(videoRef: String, thumbRef: String) {
         let baseRef = Database.database().reference()
         let timestamp:Int = Int(NSDate().timeIntervalSince1970)
-        print("TIMESTAMP FOR VIDEO",timestamp)
+//        print("TIMESTAMP FOR VIDEO",timestamp)
         baseRef.child("assets").childByAutoId().updateChildValues(["video_url" : videoRef, "thumbnail_url" : thumbRef, "timestamp" : timestamp], withCompletionBlock: {(err, ref) in
             for group in self.selectedGroups {
                 baseRef.child("group-assets").child(group.id!).updateChildValues([ref.key : 0])
@@ -214,9 +216,11 @@ class ChooseGroupTVC: UITableViewController {
     func setUpImageRecords(imageRef: String) {
         let baseRef = Database.database().reference()
         let timestamp:Int = Int(NSDate().timeIntervalSince1970)
-        print("TIMESTAMP FOR IMAGE",timestamp)
+//        print("TIMESTAMP FOR IMAGE",timestamp)
         baseRef.child("assets").childByAutoId().updateChildValues(["image_url" : imageRef, "timestamp": timestamp], withCompletionBlock: {(err, ref) in
+            print("SELECTED GROUPS ARE",  self.selectedGroups)
             for group in self.selectedGroups {
+                print("CREATING GROUP ASSET FOR IMAGE")
                 baseRef.child("group-assets").child(group.id!).updateChildValues([ref.key : 0])
                 self.createUserAssetsForGroup(groupId: group.id!, assetRef: ref.key)
                 // now just need 'user-assets' to be able to track views
@@ -229,6 +233,7 @@ class ChooseGroupTVC: UITableViewController {
         let ref = Database.database().reference().child("group-users").child(groupId)
         ref.observeSingleEvent(of: .value, with: {(snapshot) in
             if let users = snapshot.value as? [String:Any]{
+                print("USERS IN GROUP", users)
                 for user in users {
                     print("CREATING USER ASSET")
                     let finalRef = Database.database().reference().child("user-assets").child(user.key)

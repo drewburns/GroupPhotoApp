@@ -41,7 +41,7 @@ class GroupConfirmViewController: UIViewController , UITextViewDelegate{
     func makeGroupRecord() {
         let ref = Database.database().reference().child("groups").childByAutoId()
         let timestamp:Int = Int(NSDate().timeIntervalSince1970)
-        ref.updateChildValues(["name" : textInput.text!, "timestamp": timestamp], withCompletionBlock: {(err, reference) in
+        ref.updateChildValues(["name" : textInput.text!, "timestamp": timestamp, "creation_date": timestamp], withCompletionBlock: {(err, reference) in
             if err == nil {
                 for user in self.users {
                     let newref = Database.database().reference().child("group-users").child(ref.key)

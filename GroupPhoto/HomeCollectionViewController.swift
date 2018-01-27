@@ -45,13 +45,19 @@ class HomeCollectionViewController: UICollectionViewController {
     var fromLogin = ""
     var groups:[Group] = []
     var picturesDictionary:[Group:Int] = [:]
+    var refresher:UIRefreshControl!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         testCloudinary()
         onFirstLoad()
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        
+        self.refresher = UIRefreshControl()
+        self.collectionView!.alwaysBounceVertical = true
+        self.refresher.tintColor = UIColor.blue
+        self.refresher.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        self.collectionView!.addSubview(refresher)
         //Get device width
         let width = UIScreen.main.bounds.width
         
@@ -71,6 +77,7 @@ class HomeCollectionViewController: UICollectionViewController {
         collectionView!.collectionViewLayout = layout
         getUser()
         handleGroups()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -81,6 +88,16 @@ class HomeCollectionViewController: UICollectionViewController {
     }
     
     func testCloudinary() {
+    }
+    
+    func loadData() {
+        //code to execute during refresher
+        self.collectionView?.reloadData()
+        stopRefresher()         //Call this to stop refresher
+    }
+    
+    func stopRefresher() {
+        self.refresher.endRefreshing()
     }
     
     func handleGroups(){
@@ -118,7 +135,7 @@ class HomeCollectionViewController: UICollectionViewController {
 
     
                     DispatchQueue.main.async {
-//                        self.orderGroups()
+                        self.orderGroups()
                         self.collectionView?.reloadData()
                     }
                 }
@@ -132,50 +149,7 @@ class HomeCollectionViewController: UICollectionViewController {
     
     // DO THIS
     func orderGroups() {
-        // picturesDictionary - with key as group id and time as value
-        for group in self.groups {
-            let ref = Database.database().reference().child("group-assets").child(group.id!)
-            ref.queryLimited(toLast: 1).observeSingleEvent(of: .value, with: { (snapshot) in
-                if let newkey = snapshot.value as? [String:Any] {
-                    print("IT WORKED", newkey)
-                    let newref = Database.database().reference().child("assets").child(newkey.first!.key)
-                    newref.observeSingleEvent(of: .value, with: { (snapshot2) in
-                        if let data = snapshot2.value as? [String:Any] {
-                            self.picturesDictionary[group] =  data["timestamp"] as? Int
-                        } else {
-                            
-                            self.picturesDictionary[group] =  group.timestamp as? Int
-                        }
-                        
-                        
-                    })
-                } else {
-                    print("IT DIDNT" )
-                    self.picturesDictionary[group] =  group.timestamp as? Int
-                }
-                
-    
-                print("DICT COUNT", self.picturesDictionary.keys.count)
-                var array:[Group] = []
-                for (k,v) in (Array(self.picturesDictionary).sorted {$0.1 > $1.1}) {
-                    array.append(k as! Group)
-                }
-                print("_________________________")
-                
-                if array.count == self.groups.count {
-                    print("HERHERHEHREH")
-                    self.groups = array
-                    self.collectionView?.reloadData()
-                }
-            })
- 
-        }
-
-        
-        // get latest asset for each
-        // if no asset - set timestamp to timestamp of group creation
-        // compare each and sort by that
-        
+        self.groups = self.groups.sorted(by: { Int($0.timestamp) > Int($1.timestamp) })
     }
     
 //    func sortDictionary(_:[Any:Int]) -> [Any] {

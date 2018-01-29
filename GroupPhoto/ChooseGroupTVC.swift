@@ -11,6 +11,8 @@ import Photos
 import Firebase
 import AVKit
 import Cloudinary
+import NotificationBannerSwift
+
 class ChooseGroupTVC: UITableViewController {
     
     var assets:[PHAsset]?
@@ -139,7 +141,14 @@ class ChooseGroupTVC: UITableViewController {
                             // progress
                         }, completionHandler: { (result2, error2) in
                             if error2 == nil {
+                                let banner = NotificationBanner(title: "Success", subtitle: "Uploaded", style: .success)
+                                banner.autoDismiss = true
+                                banner.show(queuePosition: .front)
                                 self.setUpVideoRecords(videoRef: (result?.secureUrl)! , thumbRef: (result2?.secureUrl)!)
+                            } else {
+                                let banner = NotificationBanner(title: "Error", subtitle: error.debugDescription, style: .danger)
+                                banner.autoDismiss = true
+                                banner.show(queuePosition: .front)
                             }
                             
                         })
@@ -170,7 +179,14 @@ class ChooseGroupTVC: UITableViewController {
                     }, completionHandler: { (result, error) in
                         if error == nil {
                             print("IMAGE UPLOADED LETS GO")
+                            let banner = NotificationBanner(title: "Success", subtitle: "Uploaded", style: .success)
+                            banner.autoDismiss = true
+                            banner.show(queuePosition: .front)
                             self.setUpImageRecords(imageRef: (result?.secureUrl)!)
+                        } else {
+                            let banner = NotificationBanner(title: "Error", subtitle: error.debugDescription, style: .danger)
+                            banner.autoDismiss = true
+                            banner.show(queuePosition: .front)
                         }
     
                     })
@@ -201,6 +217,7 @@ class ChooseGroupTVC: UITableViewController {
 //        print("TIMESTAMP FOR VIDEO",timestamp)
         baseRef.child("assets").childByAutoId().updateChildValues(["video_url" : videoRef, "thumbnail_url" : thumbRef, "timestamp" : timestamp], withCompletionBlock: {(err, ref) in
             for group in self.selectedGroups {
+                
                 baseRef.child("group-assets").child(group.id!).updateChildValues([ref.key : 0])
                 print("CREATING GROUP ASSET FOR VIDEO")
                 self.createUserAssetsForGroup(groupId: group.id!, assetRef: ref.key)
@@ -217,9 +234,17 @@ class ChooseGroupTVC: UITableViewController {
         let baseRef = Database.database().reference()
         let timestamp:Int = Int(NSDate().timeIntervalSince1970)
 //        print("TIMESTAMP FOR IMAGE",timestamp)
+        let saved_groups = self.selectedGroups
         baseRef.child("assets").childByAutoId().updateChildValues(["image_url" : imageRef, "timestamp": timestamp], withCompletionBlock: {(err, ref) in
-            print("SELECTED GROUPS ARE",  self.selectedGroups)
-            for group in self.selectedGroups {
+            // might be error here
+            let num_groups  = "\(saved_groups.count)"
+            let banner = NotificationBanner(title: "Success", subtitle: num_groups , style: .success)
+            banner.autoDismiss = true
+            banner.show(queuePosition: .front)
+            print("SELECTED GROUPS ARE",  saved_groups)
+            
+            for group in saved_groups {
+                // are there even any groups?
                 print("CREATING GROUP ASSET FOR IMAGE")
                 baseRef.child("group-assets").child(group.id!).updateChildValues([ref.key : 0])
                 self.createUserAssetsForGroup(groupId: group.id!, assetRef: ref.key)

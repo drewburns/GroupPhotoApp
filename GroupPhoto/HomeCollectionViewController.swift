@@ -77,6 +77,9 @@ class HomeCollectionViewController: UICollectionViewController {
         collectionView!.collectionViewLayout = layout
         getUser()
         handleGroups()
+
+//        self.collectionView?.reloadData()
+        self.collectionView?.reloadData()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -92,6 +95,7 @@ class HomeCollectionViewController: UICollectionViewController {
     
     func loadData() {
         //code to execute during refresher
+        orderGroups()
         self.collectionView?.reloadData()
         stopRefresher()         //Call this to stop refresher
     }
@@ -132,11 +136,11 @@ class HomeCollectionViewController: UICollectionViewController {
                     newGroup.members = []
 //                    print("TIMESTAMOSDKSD", newGroup.mostRecentTimestamp())
                     self.groups.append(newGroup)
-
-    
+                    self.orderGroups()
                     DispatchQueue.main.async {
                         self.orderGroups()
                         self.collectionView?.reloadData()
+//                        collectionView?.reloadItems(at: [])
                     }
                 }
             } else {
@@ -277,7 +281,7 @@ class HomeCollectionViewController: UICollectionViewController {
         cell.group = groups[indexPath.row]
 //        print(groups[indexPath.row])
         print("_________________")
-
+        cell.imageView.image = #imageLiteral(resourceName: "placeholder")
         // setImageForCell(indexPath: indexPath, group: groups[indexPath.row])
         print("TEST TEST TEST")
 //        cell.timestamp = 1000
@@ -312,6 +316,7 @@ class HomeCollectionViewController: UICollectionViewController {
         if data["thumbnail_url"] != nil {
             if let updateCell = self.collectionView?.cellForItem(at: indexPath) as? GroupCell {
                 updateCell.imageView.loadImageUsingCacheWithUrlString(data["thumbnail_url"] as! String)
+//                collectionView?.reloadItems(at: [indexPath])
                 print("Setting image for VIDEO!")
                 isImageUnread(id: data["id"] as! String, indexPath: indexPath)
             }
@@ -324,6 +329,7 @@ class HomeCollectionViewController: UICollectionViewController {
         } else {
             if let updateCell = self.collectionView?.cellForItem(at: indexPath) as? GroupCell {
                 updateCell.imageView.loadImageUsingCacheWithUrlString(data["image_url"] as! String)
+//                collectionView?.reloadItems(at: [indexPath])
                 print("Setting image for IMAGE!")
                 isImageUnread(id: data["id"]  as! String, indexPath: indexPath)
             }

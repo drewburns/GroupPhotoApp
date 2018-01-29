@@ -19,7 +19,10 @@ class GroupCell: UICollectionViewCell {
         }
     }
     
-    
+//    override func prepareForReuse() {
+//        imageView.image = #imageLiteral(resourceName: "placeholder")
+//        super.prepareForReuse()
+//    }
     var timestamp:Int?
     @IBOutlet weak var imageView: UIImageView!
     

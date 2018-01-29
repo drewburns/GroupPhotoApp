@@ -64,6 +64,8 @@ class GroupConfirmViewController: UIViewController , UITextViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.users.append(self.user!)
+        print("LOADED")
+        print(self.user!)
         textInput.delegate = self
         mainView.layer.cornerRadius = 5;
         mainView.layer.masksToBounds = true;

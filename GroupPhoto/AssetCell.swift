@@ -12,6 +12,11 @@ class AssetCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     var addButton = false
+    
+//    override func prepareForReuse() {
+//        self.imageView.image = #imageLiteral(resourceName: "placeholder")
+//        super.prepareForReuse()
+//    }
     var asset:Asset? {
         didSet {
             if asset?.thumbnail_url == nil {

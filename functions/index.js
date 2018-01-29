@@ -14,10 +14,13 @@ exports.addAccount = functions.auth.user().onCreate(event => {
 	const user = event.data; // The firebase user
 	const user_id = user.uid;
 	const welcomeImageKey = "-L3nT61A3o9Hrst-vtSq"
+	console.log("Got user data");
 	var promises = [];
 	var newGroup = admin.database().ref("groups").push(); 
+	console.log("Pushed a new group kinda???");
 
-	var timestamp = Math.floor(admin.database.ServerValue.TIMESTAMP/1000)
+	var timestamp = Math.floor(Date.now()/1000)
+	console.log(timestamp)
 	newGroup.set({
 	  'name': 'Welcome!',
 	  'timestamp': timestamp

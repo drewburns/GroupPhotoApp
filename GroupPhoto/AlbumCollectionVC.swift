@@ -136,6 +136,7 @@ class AlbumCollectionVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! AssetCell
 //        print("CELL BEING MADE")
+//        cell.imageView.image = 
         cell.backgroundColor = UIColor.black
 //        cell.imageView.image = nil
         cell.asset = assets[indexPath.row]

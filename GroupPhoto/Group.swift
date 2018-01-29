@@ -16,6 +16,7 @@ class Group: NSObject {
     var photos:[Photo]?
     var members:[AppUser]?
     var test:Int?
+    var creation_date: NSNumber?
     
 //    func mostRecentTimestamp() -> Int {
 //        var value = 0

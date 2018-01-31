@@ -237,10 +237,10 @@ class ChooseGroupTVC: UITableViewController {
         let saved_groups = self.selectedGroups
         baseRef.child("assets").childByAutoId().updateChildValues(["image_url" : imageRef, "timestamp": timestamp], withCompletionBlock: {(err, ref) in
             // might be error here
-            let num_groups  = "\(saved_groups.count)"
-            let banner = NotificationBanner(title: "Success", subtitle: num_groups , style: .success)
-            banner.autoDismiss = true
-            banner.show(queuePosition: .front)
+//            let num_groups  = "\(saved_groups.count)"
+//            let banner = NotificationBanner(title: "Success", subtitle: num_groups , style: .success)
+//            banner.autoDismiss = true
+//            banner.show(queuePosition: .front)
             print("SELECTED GROUPS ARE",  saved_groups)
             
             for group in saved_groups {

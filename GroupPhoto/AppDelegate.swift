@@ -19,6 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        UINavigationBar.appearance().barTintColor = UIColor.init(rgbColorCodeRed: 44, green: 61, blue: 70, alpha: 1)
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+
+
 
 //        do {
 //            try Auth.auth().signOut()
@@ -63,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         UserDefaults.standard.set(token, forKey: "token")
-        
+
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {

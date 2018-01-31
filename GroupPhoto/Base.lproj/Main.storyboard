@@ -79,7 +79,7 @@
                                                 </constraints>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.17018610239028931" green="0.23874726891517639" blue="0.27637827396392822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.16862745098039217" green="0.23921568627450979" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="911-1w-tli" firstAttribute="width" secondItem="d6j-ym-VM1" secondAttribute="width" id="4wu-hc-DF6"/>
                                             <constraint firstItem="d6j-ym-VM1" firstAttribute="width" secondItem="XOq-Zl-JvF" secondAttribute="width" id="BFE-Qx-Yg2"/>
@@ -218,7 +218,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.17426785826683044" green="0.23873612284660339" blue="0.27635061740875244" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.17254901960784313" green="0.23921568627450979" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="wmp-yp-yMo" secondAttribute="trailing" constant="16" id="3tX-ph-ePT"/>
                                             <constraint firstItem="wmp-yp-yMo" firstAttribute="top" secondItem="oRn-1i-wxc" secondAttribute="bottom" constant="8" id="5Qe-t3-ypD"/>

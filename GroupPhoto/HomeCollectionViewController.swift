@@ -356,7 +356,7 @@ class HomeCollectionViewController: UICollectionViewController {
         if let updateCell = self.collectionView?.cellForItem(at: indexPath) as? GroupCell {
             updateCell.imageView.layer.borderWidth = 2
             
-            updateCell.imageView.layer.borderColor = UIColor.blue.cgColor
+            updateCell.imageView.layer.borderColor = UIColor.init(rgbColorCodeRed: 44, green: 61, blue: 70, alpha: 1) as! CGColor
         }
     }
     @IBAction func uploadNew(_ sender: Any) {
@@ -539,5 +539,18 @@ extension Array {
         return self.filter({$0 as? T == obj}).count > 0
     }
 }
+extension UIColor {
+    
+    convenience init(rgbColorCodeRed red: Int, green: Int, blue: Int, alpha: CGFloat) {
+        
+        let redPart: CGFloat = CGFloat(red) / 255
+        let greenPart: CGFloat = CGFloat(green) / 255
+        let bluePart: CGFloat = CGFloat(blue) / 255
+        
+        self.init(red: redPart, green: greenPart, blue: bluePart, alpha: alpha)
+        
+    }
+}
+
 //
 

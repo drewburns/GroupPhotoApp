@@ -28,7 +28,7 @@ internal class CLDNetworkCoordinator {
     
     fileprivate struct CLDNetworkCoordinatorConsts {
         static let BASE_CLOUDINARY_URL =    "https://api.cloudinary.com"
-        static let DEFAULT_VERSION =        "2.0.2"
+        static let DEFAULT_VERSION =        "2.0.4"
         
         static let API_KEY =                "api_key"
     }
@@ -58,11 +58,11 @@ internal class CLDNetworkCoordinator {
         return networkAdapter.cloudinaryRequest(url, headers: headers, parameters: requestParams)
     }
     
-    internal func upload(_ data: Any, params: CLDUploadRequestParams) -> CLDNetworkDataRequest {
+    internal func upload(_ data: Any, params: CLDUploadRequestParams, extraHeaders: [String:String]?=[:]) -> CLDNetworkDataRequest {
         let url = getUrl(.Upload, resourceType: params.resourceType)
         let requestParams = params.signed ? getSignedRequestParams(params) : params.params
-        let headers = getHeaders()
-        
+        var headers :[String : String] = getHeaders()
+        headers.cldMerge(extraHeaders)
         return networkAdapter.uploadToCloudinary(url, headers: headers, parameters: requestParams,  data: data)
     }
     
@@ -128,7 +128,7 @@ internal class CLDNetworkCoordinator {
     }
     
     fileprivate func getVersion() -> String {
-        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? CLDNetworkCoordinatorConsts.DEFAULT_VERSION
+        let version = CLDNetworkCoordinatorConsts.DEFAULT_VERSION
         return version
     }    
     

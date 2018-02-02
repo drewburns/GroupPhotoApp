@@ -27,7 +27,7 @@ class AssetCell: UICollectionViewCell {
                 
             } else {
                 if addButton == false {
-                    imageView.loadImageUsingCacheSync((asset?.thumbnail_url)!)
+                    imageView.loadImageUsingCacheWithUrlString((asset?.thumbnail_url)!)
 //                    imageView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
                     let image = UIImage(named: "playbutton")
                     let imageView2 = UIImageView(image: image!)

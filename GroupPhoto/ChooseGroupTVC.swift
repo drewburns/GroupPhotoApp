@@ -166,11 +166,18 @@ class ChooseGroupTVC: UITableViewController {
                 }
 
             } else if (asset.mediaType == PHAssetMediaType.image) {
-                let image = getUIImage(asset: asset)
-                
+                let manager = PHImageManager.default()
+                let option = PHImageRequestOptions()
+                var image = UIImage()
+                option.isSynchronous = true
+                manager.requestImage(for: asset, targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
+                    image = result!
+                })
+                print("IMAGE", image)
+                print("ASSET", asset)
                 let storageRef = Storage.storage().reference().child("images").child(UUID().uuidString+".png") // name this better probably in the group file
                 
-                if let uploadData = UIImagePNGRepresentation(image!) {
+                if let uploadData = UIImagePNGRepresentation(image) {
                     let config = CLDConfiguration(cloudName: "groupphoto", apiKey: "529763434314274", apiSecret: "euZFOHie0ArsDODOl00IwZj9gmE")
                     let cloudinary = CLDCloudinary(configuration: config)
                     print(cloudinary)

@@ -19,17 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        UINavigationBar.appearance().barTintColor = UIColor.init(rgbColorCodeRed: 44, green: 61, blue: 70, alpha: 1)
-        UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
 
 
 
 //        do {
-//            try Auth.auth().signOut()
-//        } catch let logerror {
-//            print(logerror)
-//        }
+//      try Auth.auth().signOut()
+// } catch let logerror {
+//    print(logerror)
+//   }
         
         if Auth.auth().currentUser != nil {
             //            print(Auth.auth().currentUser)
@@ -45,6 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
 
+        UINavigationBar.appearance().barTintColor = UIColor.init(rgbColorCodeRed: 44, green: 61, blue: 70, alpha: 1)
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
 
         IQKeyboardManager.sharedManager().enable = true
         let setting = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
@@ -111,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
          */
-        let container = NSPersistentContainer(name: "Wingman")
+        let container = NSPersistentContainer(name: "GroupPhoto")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.

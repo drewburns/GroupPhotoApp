@@ -30,38 +30,24 @@ import Foundation
  and a response closure to be called once the transfer has finished,
  as well as performing actions on the request, such as cancelling, suspending or resuming it.
  */
-@objc open class CLDUploadRequest: NSObject {
-    
-    
-    internal var networkRequest: CLDNetworkDataRequest
-    
-    internal init(networkDataRequest: CLDNetworkDataRequest) {
-        networkRequest = networkDataRequest
+open class CLDUploadRequest : NSObject {
+    internal override init() {
     }
-    
-    
-    // MARK: - Public
     
     /**
      Resume the request.
      */
-    open func resume() {
-        networkRequest.resume()
-    }
+    open func resume(){}
     
     /**
      Suspend the request.
      */
-    open func suspend() {
-        networkRequest.suspend()
-    }
+    open func suspend(){}
     
     /**
      Cancel the request.
      */
-    open func cancel() {
-        networkRequest.cancel()
-    }
+    open func cancel(){}
     
     //MARK: Handlers
     
@@ -74,8 +60,7 @@ import Foundation
      */
     
     @discardableResult
-    open func responseRaw(_ completionHandler: @escaping (_ response: Any?, _ error: NSError?) -> ()) -> CLDUploadRequest {
-        networkRequest.response(completionHandler)
+    open func responseRaw(_ completionHandler: @escaping (_ response: Any?, _ error: NSError?) -> ()) -> CLDUploadRequest{
         return self
     }
     
@@ -87,18 +72,7 @@ import Foundation
      - returns:                          The same instance of CLDUploadRequest.
      */
     @discardableResult
-    open func response(_ completionHandler: @escaping (_ result: CLDUploadResult?, _ error: NSError?) -> ()) -> CLDUploadRequest {
-        responseRaw { (response, error) in
-            if let res = response as? [String : AnyObject] {
-                completionHandler(CLDUploadResult(json: res), nil)
-            }
-            else if let err = error {
-                completionHandler(nil, err)
-            }
-            else {
-                completionHandler(nil, CLDError.generalError())
-            }
-        }
+    open func response(_ completionHandler: @escaping (_ result: CLDUploadResult?, _ error: NSError?) -> ()) -> CLDUploadRequest{
         return self
     }
     
@@ -110,8 +84,7 @@ import Foundation
      - returns:                          The same instance of CLDUploadRequest.
      */
     @discardableResult
-    func progress(_ progress: @escaping ((Progress) -> Void)) -> CLDUploadRequest {
-        networkRequest.progress(progress)
+    open func progress(_ progress: @escaping ((Progress) -> Void)) -> CLDUploadRequest{
         return self
     }
 }

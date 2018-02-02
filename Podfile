@@ -12,6 +12,8 @@ target 'GroupPhoto' do
   pod 'Cloudinary', "~> 2.0.4"
   pod 'AssetsPickerViewController', :git => 'https://github.com/DragonCherry/AssetsPickerViewController', :branch => 'swift3'
   pod "Player", "~> 0.7.0"
+  pod 'Fabric', '~> 1.7.2'
+  pod 'Crashlytics', '~> 3.9.3'
   # Pods for GroupPhoto
 
 end

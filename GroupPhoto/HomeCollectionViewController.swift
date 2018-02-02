@@ -12,6 +12,7 @@ import Photos
 import Firebase
 import AssetsPickerViewController
 import Cloudinary
+import Crashlytics
 
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     switch (lhs, rhs) {
@@ -47,11 +48,31 @@ class HomeCollectionViewController: UICollectionViewController {
     var picturesDictionary:[Group:Int] = [:]
     var refresher:UIRefreshControl!
 
-    
+    func testUserLogin() {
+        if Auth.auth().currentUser == nil {
+            do {
+                try Auth.auth().signOut()
+            } catch let logerror {
+                print(logerror)
+            }
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "login")
+            self.show(vc, sender: self)
+            
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        testUserLogin()
         testCloudinary()
         onFirstLoad()
+        
+//        let button = UIButton(type: .roundedRect)
+//        button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
+//        button.setTitle("Crash", for: [])
+//        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
+//        view.addSubview(button)
+        
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         self.refresher = UIRefreshControl()
         self.collectionView!.alwaysBounceVertical = true
@@ -91,6 +112,11 @@ class HomeCollectionViewController: UICollectionViewController {
     }
     
     func testCloudinary() {
+    }
+    
+    @IBAction func crashButtonTapped(_ sender: AnyObject) {
+        let x: Int? = nil
+        let y = 5 + x!
     }
     
     func loadData() {
@@ -162,16 +188,16 @@ class HomeCollectionViewController: UICollectionViewController {
     
     func onFirstLoad() {
         if UserDefaults.standard.value(forKey: "first") == nil {
-            print("loading wil not appear")
-            let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
-            
-            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-            loadingIndicator.hidesWhenStopped = true
-            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-            loadingIndicator.startAnimating();
-            
-            alert.view.addSubview(loadingIndicator)
-            present(alert, animated: true, completion: nil)
+//            print("loading wil not appear")
+//            let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
+//            
+//            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+//            loadingIndicator.hidesWhenStopped = true
+//            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+//            loadingIndicator.startAnimating();
+//            
+//            alert.view.addSubview(loadingIndicator)
+//            present(alert, animated: true, completion: nil)
         }
     }
 
@@ -222,7 +248,8 @@ class HomeCollectionViewController: UICollectionViewController {
                 
                 //                print(self.user?.id)
             } else{
-                self.performSegue(withIdentifier: "login", sender: nil)
+                self.testUserLogin()
+//                self.performSegue(withIdentifier: "login", sender: nil)
                 
             }
             
@@ -355,10 +382,22 @@ class HomeCollectionViewController: UICollectionViewController {
     func drawBlueBox(indexPath: IndexPath) {
         if let updateCell = self.collectionView?.cellForItem(at: indexPath) as? GroupCell {
             updateCell.imageView.layer.borderWidth = 2
-            
-            updateCell.imageView.layer.borderColor = UIColor.init(rgbColorCodeRed: 44, green: 61, blue: 70, alpha: 1) as! CGColor
+            let color = self.color(from: "0000FF")
+            updateCell.imageView.layer.borderColor = color }
+    }
+    
+    func color(from hexString : String) -> CGColor
+    {
+        if let rgbValue = UInt(hexString, radix: 16) {
+            let red   =  CGFloat((rgbValue >> 16) & 0xff) / 255
+            let green =  CGFloat((rgbValue >>  8) & 0xff) / 255
+            let blue  =  CGFloat((rgbValue      ) & 0xff) / 255
+            return UIColor(red: red, green: green, blue: blue, alpha: 1.0).cgColor
+        } else {
+            return UIColor.black.cgColor
         }
     }
+    
     @IBAction func uploadNew(_ sender: Any) {
         let picker = AssetsPickerViewController()
         picker.pickerDelegate = self

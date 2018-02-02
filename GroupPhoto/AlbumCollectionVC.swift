@@ -137,7 +137,7 @@ class AlbumCollectionVC: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! AssetCell
 //        print("CELL BEING MADE")
 //        cell.imageView.image = 
-        cell.backgroundColor = UIColor.black
+//        cell.backgroundColor = UIColor.black
 //        cell.imageView.image = nil
         cell.asset = assets[indexPath.row]
         print("Asset passed in", cell.asset?.image_url)

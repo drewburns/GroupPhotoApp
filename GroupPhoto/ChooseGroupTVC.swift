@@ -169,8 +169,14 @@ class ChooseGroupTVC: UITableViewController {
                 let manager = PHImageManager.default()
                 let option = PHImageRequestOptions()
                 var image = UIImage()
+                option.deliveryMode = PHImageRequestOptionsDeliveryMode.highQualityFormat
                 option.isSynchronous = true
-                manager.requestImage(for: asset, targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
+                option.isNetworkAccessAllowed = true
+                 let targetSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
+                print("targetSize", targetSize)
+                manager.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
+                    print("info", info)
+                    
                     image = result!
                 })
                 print("IMAGE", image)

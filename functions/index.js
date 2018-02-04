@@ -13,7 +13,11 @@ admin.initializeApp(functions.config().firebase);
 exports.addAccount = functions.auth.user().onCreate(event => {
 	const user = event.data; // The firebase user
 	const user_id = user.uid;
-	const welcomeImageKey = "-L3nT61A3o9Hrst-vtSq"
+	const welcomeImageKey1 = "-L4OZHwtWXJ62YceNPBo"
+	const welcomeImageKey2 = "-L4OZHqnjRGW9pSoiC50"
+	const welcomeImageKey3 = "-L4OZHqUarK271H0PLEf"
+
+
 	console.log("Got user data");
 	var promises = [];
 	var newGroup = admin.database().ref("groups").push(); 
@@ -47,15 +51,39 @@ exports.addAccount = functions.auth.user().onCreate(event => {
 	console.log("newUserGroup")
 	console.log(promises)
 
-	var newUserAsset = admin.database().ref(`user-assets/${user_id}`)
-	newUserAsset.set({ [welcomeImageKey]: 0});
-	promises.push(newUserAsset);
+	var newUserAsset1 = admin.database().ref(`user-assets/${user_id}`)
+	newUserAsset.set({ [welcomeImageKey3]: 0});
+	promises.push(newUserAsset1);
 	console.log("newUserAsset")
 	console.log(promises)
 
-	var newGroupAsset = admin.database().ref(`group-assets/${key}`)
-	newGroupAsset.set({[welcomeImageKey]: 0});
-	promises.push(newGroupAsset);
+	var newGroupAsset1 = admin.database().ref(`group-assets/${key}`)
+	newGroupAsset.set({[welcomeImageKey3]: 0});
+	promises.push(newGroupAsset1);
+	console.log("newGroupAsset")
+	console.log(promises)
+
+		var newUserAsset2 = admin.database().ref(`user-assets/${user_id}`)
+	newUserAsset.set({ [welcomeImageKey2]: 0});
+	promises.push(newUserAsset2);
+	console.log("newUserAsset")
+	console.log(promises)
+
+	var newGroupAsset2 = admin.database().ref(`group-assets/${key}`)
+	newGroupAsset.set({[welcomeImageKey2]: 0});
+	promises.push(newGroupAsset2);
+	console.log("newGroupAsset")
+	console.log(promises)
+
+		var newUserAsset3 = admin.database().ref(`user-assets/${user_id}`)
+	newUserAsset.set({ [welcomeImageKey1]: 0});
+	promises.push(newUserAsset3);
+	console.log("newUserAsset")
+	console.log(promises)
+
+	var newGroupAsset3 = admin.database().ref(`group-assets/${key}`)
+	newGroupAsset.set({[welcomeImageKey1]: 0});
+	promises.push(newGroupAsset3);
 	console.log("newGroupAsset")
 	console.log(promises)
 

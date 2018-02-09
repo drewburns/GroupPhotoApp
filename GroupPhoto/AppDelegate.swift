@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Firebase
 import IQKeyboardManagerSwift
+import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -48,6 +49,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         IQKeyboardManager.sharedManager().enable = true
         let setting = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            (granted, error) in
+            print("GRANTED",granted)
+            print("ERRORORR",error)
+            //Parse errors and track state
+        }
         UIApplication.shared.registerUserNotificationSettings(setting)
         UIApplication.shared.registerForRemoteNotifications()
         application.registerForRemoteNotifications()
@@ -65,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        
+        print("REGISTERD")
         
         UserDefaults.standard.set(token, forKey: "token")
 

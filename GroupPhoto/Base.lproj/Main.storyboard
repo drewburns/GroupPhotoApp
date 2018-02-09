@@ -802,7 +802,7 @@
                                             <constraint firstAttribute="width" constant="177" id="Bhd-sO-o5n"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lgg-Mt-VIM">
@@ -812,7 +812,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Add Friend">
-                                            <color key="titleColor" red="0.0034440995659999999" green="0.60855787989999999" blue="0.81270182130000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.002525579883" green="0.7489902973" blue="0.99893981220000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="friendButtonClicked:" destination="nbU-X4-F05" eventType="touchUpInside" id="HAX-o9-j3k"/>
@@ -832,9 +832,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihc-3F-f66">
-                                        <rect key="frame" x="277" y="32" width="30" height="44"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                        <state key="normal" title="➕"/>
+                                        <rect key="frame" x="277" y="32" width="30" height="55"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <segue destination="XpZ-3i-hLt" kind="show" id="Vj7-1d-F7j">
                                                 <nil key="action"/>
@@ -847,7 +849,7 @@
                                             <constraint firstAttribute="width" constant="177" id="hPf-LW-1UN"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZd-2p-Wtf">
@@ -857,14 +859,14 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <state key="normal" title="View Friends">
-                                            <color key="titleColor" red="0.0034440995659999999" green="0.60855787989999999" blue="0.81270182130000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.002525579883" green="0.7489902973" blue="0.99893981220000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="viewFriends:" destination="nbU-X4-F05" eventType="touchUpInside" id="gtC-1B-NQD"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.17254901960784313" green="0.23921568627450979" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="343" id="0i5-mp-Qwd"/>
                                     <constraint firstItem="zNT-yx-FLk" firstAttribute="centerX" secondItem="QC1-vS-XkS" secondAttribute="centerX" id="448-yw-f2x"/>
@@ -934,14 +936,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1k-R8-qjD">
-                                            <rect key="frame" x="283" y="12" width="84" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Checkbox"/>
-                                            <connections>
-                                                <action selector="clickCheckBox:" destination="cBe-rw-x4L" eventType="touchUpInside" id="8Mq-PZ-Uq9"/>
-                                            </connections>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGu-J5-56p">
                                             <rect key="frame" x="8" y="17" width="267" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -952,7 +946,6 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="checkBox" destination="l1k-R8-qjD" id="k6G-Ix-cW1"/>
                                     <outlet property="groupName" destination="mGu-J5-56p" id="I9f-zj-W0K"/>
                                 </connections>
                             </tableViewCell>
@@ -1238,15 +1231,6 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apJ-zQ-VQ5">
-                                            <rect key="frame" x="287" y="20" width="72" height="30"/>
-                                            <state key="normal" title="Checkbox">
-                                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="clickCheckBox:" destination="N90-Uo-d7j" eventType="touchUpInside" id="JrQ-TV-pcN"/>
-                                            </connections>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIg-Ij-pRR">
                                             <rect key="frame" x="70" y="35.5" width="209" height="20.5"/>
                                             <constraints>
@@ -1258,22 +1242,17 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="apJ-zQ-VQ5" firstAttribute="leading" secondItem="0hj-7O-QOu" secondAttribute="trailing" constant="8" id="0hO-gx-aH2"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="apJ-zQ-VQ5" secondAttribute="trailing" id="CCi-gE-7lD"/>
                                         <constraint firstItem="UIg-Ij-pRR" firstAttribute="top" secondItem="0hj-7O-QOu" secondAttribute="bottom" constant="8" id="DMc-sa-SyQ"/>
                                         <constraint firstItem="UIg-Ij-pRR" firstAttribute="width" secondItem="0hj-7O-QOu" secondAttribute="width" id="DxB-wE-yu0"/>
                                         <constraint firstItem="Ts9-2Q-0JW" firstAttribute="centerY" secondItem="wKY-0z-wE4" secondAttribute="centerY" id="Ull-TL-LZC"/>
-                                        <constraint firstItem="apJ-zQ-VQ5" firstAttribute="leading" secondItem="UIg-Ij-pRR" secondAttribute="trailing" constant="8" id="W6T-eT-bxr"/>
                                         <constraint firstItem="UIg-Ij-pRR" firstAttribute="leading" secondItem="Ts9-2Q-0JW" secondAttribute="trailing" constant="17" id="cHT-Wl-GyP"/>
                                         <constraint firstItem="Ts9-2Q-0JW" firstAttribute="leading" secondItem="wKY-0z-wE4" secondAttribute="leadingMargin" id="eiJ-5d-j8k"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="UIg-Ij-pRR" secondAttribute="bottom" constant="3" id="ezp-0R-nV4"/>
                                         <constraint firstItem="0hj-7O-QOu" firstAttribute="leading" secondItem="Ts9-2Q-0JW" secondAttribute="trailing" constant="17" id="kr4-9i-fSy"/>
                                         <constraint firstItem="Ts9-2Q-0JW" firstAttribute="top" secondItem="wKY-0z-wE4" secondAttribute="topMargin" constant="8" id="s3k-ed-w8e"/>
-                                        <constraint firstItem="apJ-zQ-VQ5" firstAttribute="centerY" secondItem="wKY-0z-wE4" secondAttribute="centerY" id="ule-kq-rEO"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="checkbox" destination="apJ-zQ-VQ5" id="vwy-Ag-ue3"/>
                                     <outlet property="nameLabel" destination="0hj-7O-QOu" id="ajX-id-vhW"/>
                                     <outlet property="userImage" destination="Ts9-2Q-0JW" id="Hpk-Tv-sJ4"/>
                                     <outlet property="userNameLabel" destination="UIg-Ij-pRR" id="xNH-8A-ZbO"/>

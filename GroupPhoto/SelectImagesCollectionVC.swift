@@ -15,6 +15,7 @@ class SelectImagesCollectionVC: UICollectionViewController {
 
     var imageArray = [UIImage]()
     var pickedImages = [UIImage]()
+
     
     func grapPhotos() {
         let imgManager = PHImageManager.default()

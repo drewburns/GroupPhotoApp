@@ -1,5 +1,6 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+// let string = "https://wingman-notifs.herokuapp.com/send?token=" + (self.user?.token)! + "&alert=" + alert
 
 admin.initializeApp(functions.config().firebase);
 // // Create and Deploy Your First Cloud Functions
@@ -108,6 +109,63 @@ exports.updateTimestamp = functions.database.ref('/group-assets/{group-id}').onW
 	updateRef.set(Math.floor(timeMil()/1000));
 	promises.push(updateRef);
 
+	// var group_name = ""
+	// var groupRef = firebase.database().ref(`groups/${key}`);
+	// groupRef.once('value').then(snapshot => {
+	// 	group_name = snapshot.child("name").val();
+	// });
+
+	// groupRef.once('value', function(snapshot) {
+ //  // The callback succeeded; do something with the final result.
+ //  	group_name = snapshot.child("name").val();
+	// }, function(error) {
+	//   // The callback failed.
+	//   console.error(error);
+	// });
+
+	// return firebase.database().ref('/groupy/' + key).once('value').then(function(snapshot) {
+ //  	// var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+	//   // ...
+	//   return null
+	// });
+
+	// function fireRequest(snap) {
+	// 	var token = snapshot.child("token").val();
+	// 	if (token !== null) {
+	// 		var alert = encodeURIComponent("New photo from " + group_name)
+	// 		var string = "https://wingman-notifs.herokuapp.com/send?token=" + token + "&alert=" + alert
+	//     var xmlHttp = new XMLHttpRequest();
+	//     xmlHttp.onreadystatechange = function() { 
+	//         if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
+	//             callback(xmlHttp.responseText);
+	//           return null
+	//     }
+	//     xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+	//     xmlHttp.send(null);
+	// 	}
+	// }
+
+	// function sendNotif(snap) {
+	// 	var user_key = snap.key
+	// 	var newRef = admin.database().ref(`users/{$user_key}`)
+	// 		newRef.once('value', function(snapshot){
+
+	// 			fireRequest(snapshot)
+
+	// 		}, function(error) {
+	// 			console.log(error);
+	// 		});
+	// }
+
+	// var groupUsersRef = admin.database().ref(`group-users/${key}`);
+	// groupsUsersRef.once('value', function(snapshot) {
+	// 	var groupName = ""
+	// 	snapshot.forEach(function(childSnap){
+	// 		sendNotif(childSnap);
+	// 	});
+	// }, function(error) {
+	// 	console.log(error);
+	// });
 
 	return Promise.all(promises);
 	// admin.database.ServerValue.TIMESTAMP

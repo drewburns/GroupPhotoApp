@@ -22,29 +22,7 @@ class ChooseGroupCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        if selected == true {
-            checkBox.setTitle("✓", for: .normal)
-        } else {
-            checkBox.setTitle("", for: .normal)
-        }
-        // Configure the view for the selected state
-    }
-    
-    
 
-    
-    
-    @IBAction func clickCheckBox(_ sender: Any) {
-        if isSelected == true {
-            checkBox.setTitle("", for: .normal)
-            isSelected = false
-        } else {
-            checkBox.setTitle("✓", for: .normal)
-            isSelected = true
-        }
-    }
 
 
 }

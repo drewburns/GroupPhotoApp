@@ -71,6 +71,7 @@ class FriendTVC: UITableViewCell {
         if let userId = self.user?.id {
             ref.updateChildValues([userId: userId], withCompletionBlock: { (error, ref) in
                 print("Done!")
+                self.sendNotif(self.user!)
                 self.addButton.setTitle("Friends", for: .normal)
             })
         }
@@ -145,7 +146,36 @@ class FriendTVC: UITableViewCell {
         // Configure the view for the selected state
     }
     
+
     
     
     
+
+}
+
+extension UITableViewCell {
+    func sendNotif(_ user:AppUser) {
+        if let username = UserDefaults.standard.string(forKey: "username") {
+            var alert = username + " added you as a friend"
+            let token = user.token
+            if token != nil && token != "none"  {
+                alert = alert.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+                let string = "https://wingman-notifs.herokuapp.com/send?token=" + token! + "&alert=" + alert
+                
+                let url = URL(string: string)
+                URLSession.shared.dataTask(with: url!, completionHandler: {
+                    (data, response, error) in
+                    if(error != nil){
+                        print("error")
+                    }else{
+                        do{
+                            
+                        } catch let error as NSError{
+                            print(error)
+                        }
+                    }
+                }).resume()
+            }
+        }
+    }
 }

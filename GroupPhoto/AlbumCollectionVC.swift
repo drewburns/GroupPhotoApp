@@ -20,16 +20,22 @@ class AlbumCollectionVC: UICollectionViewController {
     var assets:[Asset] = []
     var users:[AppUser] = []
     var user:AppUser?
-
+    let timeNow = Int(NSDate().timeIntervalSince1970)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = group?.name
         fetchGroupAssets()
+//        getExistingGroupAssets()
+//        listenForNewGroupAssets()
         self.assets.sort(by: { (message1, message2) -> Bool in
             
             return (message1.timestamp?.int32Value)! > (message2.timestamp?.int32Value)!
         })
+
+//        self.collectionView?.reloadData()
+
+
         fetchGroupUsers()
         print("USER", user)
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -53,8 +59,6 @@ class AlbumCollectionVC: UICollectionViewController {
         collectionView!.collectionViewLayout = layout
         
         
-
-        
 //        print(group!.name)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -65,7 +69,26 @@ class AlbumCollectionVC: UICollectionViewController {
         // Do any additional setup after loading the view.
     }
 
-    
+    func getExistingGroupAssets() {
+        let ref = Database.database().reference().child("group-assets").child((group?.id!)!)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let data = snapshot.value as? [String:Any] {
+                for ref in data {
+                    self.fetchAsset(key: ref.key)
+                }
+            }
+        }, withCancel: nil)
+        
+    }
+    func listenForNewGroupAssets() {
+        let ref = Database.database().reference().child("group-assets").child((group?.id!)!)
+        ref.observe(.childAdded, with: {(snapshot) in
+            if snapshot.exists() {
+                self.fetchAsset2(key: snapshot.key)
+            }
+            
+        })
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -94,21 +117,69 @@ class AlbumCollectionVC: UICollectionViewController {
                 let asset = Asset()
                 asset.setValuesForKeys(data)
                 print("ASSET BEING MADE!", asset)
-                self.assets.append(asset)
-                self.assets.sort(by: { (message1, message2) -> Bool in
-                    
-                    return (message2.timestamp?.int32Value)! > (message1.timestamp?.int32Value)!
-                })
-                DispatchQueue.main.async(execute: {
-                    self.collectionView?.reloadData()
-                })
+                if asset.thumbnail_url == nil {
+                    loadImageUsingCacheAsync(asset.image_url!) { (image1) -> Void in
+                        if let image2 = image1{
+                            asset.image = image2
+                        }
+                        self.assets.append(asset)
+                        self.assets.sort(by: { (message1, message2) -> Bool in
+                            
+                            return (message2.timestamp?.int32Value)! > (message1.timestamp?.int32Value)!
+                        })
+                        DispatchQueue.main.async(execute: {
+                            self.collectionView?.reloadData()
+                            let lastItemIndex = NSIndexPath.init(item: self.assets.count - 1, section: 0)
+                            self.collectionView?.scrollToItem(at: lastItemIndex as IndexPath, at: .bottom, animated: true)
+                        })
+                    }
+                } else {
+                    loadImageUsingCacheAsync(asset.thumbnail_url!) { (image1) -> Void in
+                        if let image2 = image1{
+                            asset.image = image2
+                        }
+                        self.assets.append(asset)
+                        self.assets.sort(by: { (message1, message2) -> Bool in
+                            
+                            return (message2.timestamp?.int32Value)! > (message1.timestamp?.int32Value)!
+                        })
+                        DispatchQueue.main.async(execute: {
+                            self.collectionView?.reloadData()
+                        })
+                    }
+                }
+
+                
+
+                
             }
         })
-        DispatchQueue.main.async(execute: {
-            self.collectionView?.reloadData()
-        })
+
     }
 
+    func fetchAsset2(key: String) {
+        let ref = Database.database().reference().child("assets").child(key)
+        ref.observeSingleEvent(of: .value, with: {(snapshot) in
+            if var data = snapshot.value as? [String:Any] {
+                data["id"] = snapshot.key
+                if data["timestamp"] as! Int > self.timeNow {
+                    
+                    let asset = Asset()
+                    asset.setValuesForKeys(data)
+                    print("ASSET BEING MADE!", asset)
+                    self.assets.append(asset)
+                    self.assets.sort(by: { (message1, message2) -> Bool in
+                        
+                        return (message2.timestamp?.int32Value)! > (message1.timestamp?.int32Value)!
+                    })
+                    DispatchQueue.main.async(execute: {
+                        self.collectionView?.reloadData()
+                    })
+                }
+            }
+        })
+        
+    }
     
     /*
     // MARK: - Navigation
@@ -138,9 +209,9 @@ class AlbumCollectionVC: UICollectionViewController {
 //        print("CELL BEING MADE")
 //        cell.imageView.image = 
 //        cell.backgroundColor = UIColor.black
-//        cell.imageView.image = nil
+//        cell.imageView.image = #imageLiteral(resourceName: "placeholder")
         cell.asset = assets[indexPath.row]
-        print("Asset passed in", cell.asset?.image_url)
+//        print("Asset passed in", cell.asset?.image_url)
         
 //        cell.imageView.image = nil
 //        let userImage = cell.imageView
@@ -185,13 +256,13 @@ class AlbumCollectionVC: UICollectionViewController {
         for i in 0..<assets.count{
             let imageView = UIImageView()
             if assets[i].thumbnail_url != nil {
-                imageView.loadImageUsingCacheWithUrlString(assets[i].thumbnail_url!)
+                imageView.image = (assets[i].image)
                 print("Before", imageView.frame)
                 // imageView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
                 // for now because video was sideways???
                 // load other video stuff
             } else {
-                imageView.loadImageUsingCacheWithUrlString(assets[i].image_url!)
+                imageView.image = (assets[i].image)
             }
             let xPosition = (self.collectionView?.frame.width)! * CGFloat(i)
             zoomingScrollView.isPagingEnabled = true
@@ -352,6 +423,8 @@ class AlbumCollectionVC: UICollectionViewController {
     }
     
     func fetchGroupUsers() {
+//        self.collectionView?.reloadData()
+
         if let id = self.group?.id {
             let ref = Database.database().reference().child("group-users").child(id)
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -390,6 +463,7 @@ class AlbumCollectionVC: UICollectionViewController {
             let viewController:GroupUsersTVC = segue.destination as! GroupUsersTVC
             viewController.user = self.user
             viewController.users = self.users
+            
             
         } else if segue.identifier == "addusers" {
             let viewController:AddGroupUsersTVC = segue.destination as! AddGroupUsersTVC

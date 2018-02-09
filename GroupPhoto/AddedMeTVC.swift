@@ -72,6 +72,7 @@ class AddedMeTVC: UITableViewCell {
         if let userId = self.user?.id {
             ref.updateChildValues([userId: userId], withCompletionBlock: { (error, ref) in
                 print("Done!")
+                self.sendNotif(self.user!)
                 self.addButton.setTitle("Friends", for: .normal)
             })
         }

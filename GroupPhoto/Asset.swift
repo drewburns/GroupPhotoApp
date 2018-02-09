@@ -14,5 +14,6 @@ class Asset: NSObject {
     var thumbnail_url:String?
     var video_url:String?
     var timestamp:NSNumber?
+    var image:UIImage?
     
 }

@@ -25,6 +25,7 @@ class ChooseGroupTVC: UITableViewController {
     override func viewDidLoad() {
         print("CURRENT USER", Auth.auth().currentUser?.uid)
         super.viewDidLoad()
+        print("ASSETS", self.assets)
 //        loadUserGroups()
 
         // Uncomment the following line to preserve selection between presentations
@@ -89,7 +90,7 @@ class ChooseGroupTVC: UITableViewController {
     
     
     @IBAction func finished(_ sender: Any) {
-        let alert = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
         
         let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         loadingIndicator.hidesWhenStopped = true
@@ -98,20 +99,24 @@ class ChooseGroupTVC: UITableViewController {
         
         alert.view.addSubview(loadingIndicator)
         present(alert, animated: true, completion: nil)
+        let the_groops1 = self.selectedGroups
         for asset in self.assets! {
             print("ASSET BELOW", "_____________________")
             print(asset)
             if (asset.mediaType == PHAssetMediaType.video) {
-                PHCachingImageManager().requestAVAsset(forVideo: asset, options: nil) { (asset, audioMix, args) in
-                    let video = asset
+                let options = PHVideoRequestOptions()
+                options.isNetworkAccessAllowed = true
+                PHCachingImageManager().requestAVAsset(forVideo: asset, options: options) { (asset1, audioMix, args) in
+                    let video = asset1
                     let urlThing = video as! AVURLAsset
                     let url = urlThing.url
-                     let storageRef = Storage.storage().reference().child("videos").child(UUID().uuidString+".mp4")
+//                     let storageRef = Storage.storage().reference().child("videos").child(UUID().uuidString+".mp4")
 
                     let tempDirectoryURL = NSURL.fileURL(withPath: NSTemporaryDirectory(), isDirectory: true)
         
                     // Create a destination URL.
-                    let targetURL = tempDirectoryURL.appendingPathComponent("test.mp4")
+                    let string = randomString(30) + ".mp4"
+                    let targetURL = tempDirectoryURL.appendingPathComponent(string)
                     
                     // Copy the file.
                     print(targetURL)
@@ -144,7 +149,7 @@ class ChooseGroupTVC: UITableViewController {
                                 let banner = NotificationBanner(title: "Success", subtitle: "Uploaded", style: .success)
                                 banner.autoDismiss = true
                                 banner.show(queuePosition: .front)
-                                self.setUpVideoRecords(videoRef: (result?.secureUrl)! , thumbRef: (result2?.secureUrl)!)
+                                self.setUpVideoRecords(videoRef: (result?.secureUrl)! , thumbRef: (result2?.secureUrl)!, the_groups: self.selectedGroups)
                             } else {
                                 let banner = NotificationBanner(title: "Error", subtitle: error.debugDescription, style: .danger)
                                 banner.autoDismiss = true
@@ -166,10 +171,11 @@ class ChooseGroupTVC: UITableViewController {
                 }
 
             } else if (asset.mediaType == PHAssetMediaType.image) {
+                let the_groops = self.selectedGroups
                 let manager = PHImageManager.default()
                 let option = PHImageRequestOptions()
                 var image = UIImage()
-                option.deliveryMode = PHImageRequestOptionsDeliveryMode.highQualityFormat
+                option.deliveryMode = PHImageRequestOptionsDeliveryMode.opportunistic
                 option.isSynchronous = true
                 option.isNetworkAccessAllowed = true
                  let targetSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
@@ -187,7 +193,8 @@ class ChooseGroupTVC: UITableViewController {
                     let config = CLDConfiguration(cloudName: "groupphoto", apiKey: "529763434314274", apiSecret: "euZFOHie0ArsDODOl00IwZj9gmE")
                     let cloudinary = CLDCloudinary(configuration: config)
                     print(cloudinary)
-                    cloudinary.createUploader().signedUpload(data: uploadData, params: nil, progress: { (progress) in
+                    let passed_groups = self.selectedGroups
+                    let uploader = cloudinary.createUploader().signedUpload(data: uploadData, params: nil, progress: { (progress) in
                         // progress
                     }, completionHandler: { (result, error) in
                         if error == nil {
@@ -195,7 +202,7 @@ class ChooseGroupTVC: UITableViewController {
                             let banner = NotificationBanner(title: "Success", subtitle: "Uploaded", style: .success)
                             banner.autoDismiss = true
                             banner.show(queuePosition: .front)
-                            self.setUpImageRecords(imageRef: (result?.secureUrl)!)
+                            self.setUpImageRecords(imageRef: (result?.secureUrl)!, the_groups: passed_groups)
                         } else {
                             let banner = NotificationBanner(title: "Error", subtitle: error.debugDescription, style: .danger)
                             banner.autoDismiss = true
@@ -203,6 +210,7 @@ class ChooseGroupTVC: UITableViewController {
                         }
     
                     })
+                    uploader.resume()
                     
                 }
             
@@ -224,16 +232,16 @@ class ChooseGroupTVC: UITableViewController {
         })
     }
     
-    func setUpVideoRecords(videoRef: String, thumbRef: String) {
+    func setUpVideoRecords(videoRef: String, thumbRef: String, the_groups: [Group]) {
         let baseRef = Database.database().reference()
         let timestamp:Int = Int(NSDate().timeIntervalSince1970)
 //        print("TIMESTAMP FOR VIDEO",timestamp)
         baseRef.child("assets").childByAutoId().updateChildValues(["video_url" : videoRef, "thumbnail_url" : thumbRef, "timestamp" : timestamp], withCompletionBlock: {(err, ref) in
-            for group in self.selectedGroups {
+            for group in the_groups {
                 
                 baseRef.child("group-assets").child(group.id!).updateChildValues([ref.key : 0])
                 print("CREATING GROUP ASSET FOR VIDEO")
-                self.createUserAssetsForGroup(groupId: group.id!, assetRef: ref.key)
+                self.createUserAssetsForGroup(groupId: group.id!, assetRef: ref.key, groupName: group.name!)
                 // now just need 'user-assets' to be able to track views
                 
 
@@ -243,31 +251,32 @@ class ChooseGroupTVC: UITableViewController {
 
     }
     
-    func setUpImageRecords(imageRef: String) {
+    func setUpImageRecords(imageRef: String, the_groups: [Group]) {
         let baseRef = Database.database().reference()
         let timestamp:Int = Int(NSDate().timeIntervalSince1970)
 //        print("TIMESTAMP FOR IMAGE",timestamp)
-        let saved_groups = self.selectedGroups
+//        let saved_groups = the_groups
+        print("CREATING ASSET FOR IMAGE!")
         baseRef.child("assets").childByAutoId().updateChildValues(["image_url" : imageRef, "timestamp": timestamp], withCompletionBlock: {(err, ref) in
             // might be error here
 //            let num_groups  = "\(saved_groups.count)"
 //            let banner = NotificationBanner(title: "Success", subtitle: num_groups , style: .success)
 //            banner.autoDismiss = true
 //            banner.show(queuePosition: .front)
-            print("SELECTED GROUPS ARE",  saved_groups)
+            print("SELECTED GROUPS ARE",  the_groups)
             
-            for group in saved_groups {
+            for group in the_groups {
                 // are there even any groups?
                 print("CREATING GROUP ASSET FOR IMAGE")
                 baseRef.child("group-assets").child(group.id!).updateChildValues([ref.key : 0])
-                self.createUserAssetsForGroup(groupId: group.id!, assetRef: ref.key)
+                self.createUserAssetsForGroup(groupId: group.id!, assetRef: ref.key, groupName: group.name!)
                 // now just need 'user-assets' to be able to track views
             }
             
         })
     }
     
-    func createUserAssetsForGroup(groupId: String, assetRef: String) {
+    func createUserAssetsForGroup(groupId: String, assetRef: String, groupName: String) {
         let ref = Database.database().reference().child("group-users").child(groupId)
         ref.observeSingleEvent(of: .value, with: {(snapshot) in
             if let users = snapshot.value as? [String:Any]{
@@ -276,11 +285,46 @@ class ChooseGroupTVC: UITableViewController {
                     print("CREATING USER ASSET")
                     let finalRef = Database.database().reference().child("user-assets").child(user.key)
                     finalRef.updateChildValues([assetRef: 0])
+                    let userRef = Database.database().reference().child("users").child(user.key)
+                    userRef.observeSingleEvent(of: .value, with: { (snapshot4) in
+                        if let user_values = snapshot4.value as? [String:Any] {
+                            print("CREATED USER VALUES")
+                            if let token = user_values["token"] as? String {
+                                print("CREATED TOKEN")
+                                if token != nil && token != "none"  {
+                                    print("SENDING NOTIF")
+                                    self.sendNotif(groupName: groupName, user_token: token )
+                                    //                                self.dismiss(animated: false, completion: nil)
+                                }
+                            }
+                        }
+                    }, withCancel: nil)
+                    self.dismiss(animated: false, completion: nil)
                     
                 }
             }
             
         })
+    }
+    
+    func sendNotif(groupName: String, user_token: String) {
+        var alert = UserDefaults.standard.string(forKey: "username")! + " posted a new photo in " + groupName
+        alert = alert.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        let string = "https://wingman-notifs.herokuapp.com/send?token=" + user_token + "&alert=" + alert
+        
+        let url = URL(string: string)
+        URLSession.shared.dataTask(with: url!, completionHandler: {
+            (data, response, error) in
+            if(error != nil){
+                print("error")
+            }else{
+                do{
+                    
+                } catch let error as NSError{
+                    print(error)
+                }
+            }
+        }).resume()
     }
     
     
@@ -308,6 +352,7 @@ class ChooseGroupTVC: UITableViewController {
         do {
             
             let thumbnailCGImage = try imageGenerator.copyCGImage(at: CMTimeMake(1, 60), actualTime: nil)
+            
             return UIImage(cgImage: thumbnailCGImage)
             
         } catch let err {
@@ -328,13 +373,14 @@ class ChooseGroupTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // set checkbox to checked and highlight kind of
-        
+        print("TEST")
         if let list = tableView.indexPathsForSelectedRows {
             selectedGroups.removeAll()
             for item in list {
                 self.selectedGroups.append(self.groups[item.row])
+                
             }
-            if list.count > 0 {
+            if self.selectedGroups.count > 0 {
                 doneButton.isEnabled = true
             } else {
                 doneButton.isEnabled = false
@@ -407,4 +453,36 @@ class ChooseGroupTVC: UITableViewController {
     }
     */
 
+}
+extension UIImage {
+    func resized(withPercentage percentage: CGFloat) -> UIImage? {
+        let canvasSize = CGSize(width: size.width * percentage, height: size.height * percentage)
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+    func resized(toWidth width: CGFloat) -> UIImage? {
+        let canvasSize = CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer { UIGraphicsEndImageContext() }
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+}
+
+func randomString(_ length: Int) -> String {
+    
+    let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    let len = UInt32(letters.length)
+    
+    var randomString = ""
+    
+    for _ in 0 ..< length {
+        let rand = arc4random_uniform(len)
+        var nextChar = letters.character(at: Int(rand))
+        randomString += NSString(characters: &nextChar, length: 1) as String
+    }
+    
+    return randomString
 }

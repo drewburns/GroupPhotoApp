@@ -47,6 +47,10 @@ class HomeCollectionViewController: UICollectionViewController {
     var groups:[Group] = []
     var picturesDictionary:[Group:Int] = [:]
     var refresher:UIRefreshControl!
+    
+    let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
+    
+    let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
 
     func testUserLogin() {
         if Auth.auth().currentUser == nil {
@@ -66,7 +70,8 @@ class HomeCollectionViewController: UICollectionViewController {
         testUserLogin()
         testCloudinary()
         onFirstLoad()
-        
+        loadingIndicator.stopAnimating()
+        self.dismiss(animated: true, completion: nil)
 //        let button = UIButton(type: .roundedRect)
 //        button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
 //        button.setTitle("Crash", for: [])
@@ -188,16 +193,16 @@ class HomeCollectionViewController: UICollectionViewController {
     
     func onFirstLoad() {
         if UserDefaults.standard.value(forKey: "first") == nil {
-//            print("loading wil not appear")
-//            let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
-//            
-//            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-//            loadingIndicator.hidesWhenStopped = true
-//            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-//            loadingIndicator.startAnimating();
-//            
-//            alert.view.addSubview(loadingIndicator)
-//            present(alert, animated: true, completion: nil)
+            print("loading wil not appear")
+            let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
+            
+            let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+            loadingIndicator.hidesWhenStopped = true
+            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            loadingIndicator.startAnimating();
+            
+            alert.view.addSubview(loadingIndicator)
+            present(alert, animated: true, completion: nil)
         }
     }
 
@@ -227,14 +232,14 @@ class HomeCollectionViewController: UICollectionViewController {
                 }
                 let token = UserDefaults.standard.value(forKey: "token")
                 print("user token", self.user?.token)
-                if  ((self.user?.token) == "none")   {
+//                if  ((self.user?.token) == "none")   {
                     print("We are about to save the user's token into firebase from HomeController")
                     if Auth.auth().currentUser != nil {
                         ref.child("users").child(userID!).updateChildValues(["token": token])
                         self.user?.token = token as! String?
                         UserDefaults.standard.removeObject(forKey: "token")
                     }
-                }
+//                }
                 //                let string = "https://wingman-notifs.herokuapp.com/send?token=" + (self.user?.token)!
                 //                print("STRING", string)
                 //
@@ -438,7 +443,7 @@ class HomeCollectionViewController: UICollectionViewController {
         performSegue(withIdentifier: "showAlbum", sender: groups[indexPath.row])
         if let updateCell = self.collectionView?.cellForItem(at: indexPath) as? GroupCell {
             updateCell.imageView.layer.borderWidth = 0
-            
+            updateCell.imageView.image = #imageLiteral(resourceName: "placeholder")
             updateCell.imageView.layer.borderColor = UIColor.blue.cgColor
             updateAssetsToRead(group_id: (updateCell.group?.id!)!)
         }

@@ -71,7 +71,9 @@ class HomeCollectionViewController: UICollectionViewController {
         testCloudinary()
         onFirstLoad()
         loadingIndicator.stopAnimating()
-        self.dismiss(animated: true, completion: nil)
+        if UserDefaults.standard.value(forKey: "first") == nil {
+            self.dismiss(animated: true, completion: nil)
+        }
 //        let button = UIButton(type: .roundedRect)
 //        button.frame = CGRect(x: 20, y: 50, width: 100, height: 30)
 //        button.setTitle("Crash", for: [])
@@ -195,12 +197,12 @@ class HomeCollectionViewController: UICollectionViewController {
         if UserDefaults.standard.value(forKey: "first") == nil {
             print("loading wil not appear")
             let alert = UIAlertController(title: nil, message: "Loading", preferredStyle: .alert)
-            
+
             let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
             loadingIndicator.hidesWhenStopped = true
             loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
             loadingIndicator.startAnimating();
-            
+
             alert.view.addSubview(loadingIndicator)
             present(alert, animated: true, completion: nil)
         }

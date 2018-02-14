@@ -52,40 +52,42 @@ exports.addAccount = functions.auth.user().onCreate(event => {
 	console.log("newUserGroup")
 	console.log(promises)
 
+	console.log("----------------------------")
+
 	var newUserAsset1 = admin.database().ref(`user-assets/${user_id}`)
-	newUserAsset.set({ [welcomeImageKey3]: 0});
+	newUserAsset1.set({ [welcomeImageKey3]: 0});
 	promises.push(newUserAsset1);
-	console.log("newUserAsset")
+	console.log("newUserAsset1")
 	console.log(promises)
 
 	var newGroupAsset1 = admin.database().ref(`group-assets/${key}`)
-	newGroupAsset.set({[welcomeImageKey3]: 0});
+	newGroupAsset1.set({[welcomeImageKey3]: 0});
 	promises.push(newGroupAsset1);
-	console.log("newGroupAsset")
+	console.log("newGroupAsset1")
 	console.log(promises)
 
-		var newUserAsset2 = admin.database().ref(`user-assets/${user_id}`)
-	newUserAsset.set({ [welcomeImageKey2]: 0});
+	var newUserAsset2 = admin.database().ref(`user-assets/${user_id}`)
+	newUserAsset2.set({ [welcomeImageKey2]: 0});
 	promises.push(newUserAsset2);
-	console.log("newUserAsset")
+	console.log("newUserAsset2")
 	console.log(promises)
 
 	var newGroupAsset2 = admin.database().ref(`group-assets/${key}`)
-	newGroupAsset.set({[welcomeImageKey2]: 0});
+	newGroupAsset2.set({[welcomeImageKey2]: 0});
 	promises.push(newGroupAsset2);
-	console.log("newGroupAsset")
+	console.log("newGroupAsset2")
 	console.log(promises)
 
-		var newUserAsset3 = admin.database().ref(`user-assets/${user_id}`)
-	newUserAsset.set({ [welcomeImageKey1]: 0});
+	var newUserAsset3 = admin.database().ref(`user-assets/${user_id}`)
+	newUserAsset3.set({ [welcomeImageKey1]: 0});
 	promises.push(newUserAsset3);
-	console.log("newUserAsset")
+	console.log("newUserAsset3")
 	console.log(promises)
 
 	var newGroupAsset3 = admin.database().ref(`group-assets/${key}`)
-	newGroupAsset.set({[welcomeImageKey1]: 0});
+	newGroupAsset3.set({[welcomeImageKey1]: 0});
 	promises.push(newGroupAsset3);
-	console.log("newGroupAsset")
+	console.log("newGroupAsset3")
 	console.log(promises)
 
 	return Promise.all(promises);
